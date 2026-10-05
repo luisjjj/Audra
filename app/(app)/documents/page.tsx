@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { PageWrap, Reveal, StatusPill } from "@/components/ui";
 import { DEMO_DOCS } from "@/lib/demo";
@@ -13,13 +13,15 @@ export default function Documents() {
   const [q, setQ] = useState("");
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  useEffect(() => () => { if (timer.current) clearInterval(timer.current); }, []);
   const list = DEMO_DOCS.filter((d) => (f === "All" || d.category === f) && d.title.toLowerCase().includes(q.toLowerCase()));
 
   const fakeUpload = () => {
     setUploading(true); setProgress(0);
-    const t = setInterval(() => setProgress((p) => {
-      if (p >= 100) { clearInterval(t); setTimeout(() => setUploading(false), 600); return 100; }
-      return p + 12;
+    timer.current = setInterval(() => setProgress((p) => {
+      if (p >= 100) { if (timer.current) clearInterval(timer.current); setTimeout(() => setUploading(false), 600); return 100; }
+      return Math.min(p + 12, 100);
     }), 160);
   };
 
@@ -36,8 +38,8 @@ export default function Documents() {
           <p className="mono-meta mt-1 text-neutral-500">{progress < 100 ? "UPLOADING → PROCESSING → EXTRACT/REVIEW" : "COMPLETED ✓ · v3 CREATED · TRAIL LOGGED"}</p>
         </motion.div>
       )}
-      <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search documents..." className="mt-4 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-2.5 text-sm outline-none" />
-      <div className="mt-3 flex gap-2 overflow-x-auto pb-1">{FILTERS.map((x) => (<button key={x} onClick={() => setF(x)} className={`whitespace-nowrap rounded-full border px-4 py-1.5 text-sm font-bold ${f === x ? "border-ink bg-ink text-white" : "border-neutral-200 bg-white text-neutral-600"}`}>{x}</button>))}</div>
+      <input value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search documents" role="searchbox" placeholder="Search documents..." className="mt-4 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-2.5 text-sm outline-none" />
+      <div className="mt-3 flex gap-2 overflow-x-auto pb-1" role="tablist" aria-label="Filter documents">{FILTERS.map((x) => (<button key={x} role="tab" aria-selected={f === x} onClick={() => setF(x)} className={`min-h-[44px] whitespace-nowrap rounded-full border px-4 py-2 text-sm font-bold ${f === x ? "border-ink bg-ink text-white" : "border-neutral-200 bg-white text-neutral-600"}`}>{x}</button>))}</div>
       <div className="mt-4 grid gap-3 md:grid-cols-2">
         {list.map((d, i) => (
           <Reveal key={d.id} delay={i * 0.04}>

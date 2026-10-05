@@ -32,15 +32,15 @@ export function Shell({ children, userName = "Henkyaa Japheth", userRole = "Admi
     <div className="flex h-full flex-col">
       <div className="p-4">
         <div className="relative">
-          <button onClick={() => setWsOpen(!wsOpen)} className="card-brutal-sm flex w-full items-center justify-between rounded-xl bg-white px-3 py-2.5 text-left transition hover:bg-neutral-50">
-            <span><span className="block text-[11px] font-medium uppercase tracking-wider text-neutral-500">Workspace</span><span className="block text-sm font-semibold">{org}</span></span>
+          <button onClick={() => setWsOpen(!wsOpen)} aria-expanded={wsOpen} aria-haspopup="listbox" className="card-brutal-sm flex w-full items-center justify-between gap-2 rounded-xl bg-white px-3 py-2.5 text-left transition hover:bg-neutral-50">
+            <span className="min-w-0"><span className="block text-[11px] font-medium uppercase tracking-wider text-neutral-500">Workspace</span><span className="block truncate text-sm font-semibold">{org}</span></span>
             <span className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />Live</span>
           </button>
           <AnimatePresence>
             {wsOpen && (
               <motion.div initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.18 }} className="card-brutal absolute z-50 mt-2 w-full rounded-xl bg-white p-1.5">
-                {[org, "Meridian Audit Partners", "XYZ Consulting"].map((o) => (
-                  <button key={o} className="w-full rounded-lg px-3 py-2 text-left text-sm font-medium hover:bg-neutral-100">{o}</button>
+                {[org, "Meridian Audit Partners"].map((o) => (
+                  <button key={o} onClick={() => setWsOpen(false)} className="w-full rounded-lg px-3 py-2 text-left text-sm font-medium hover:bg-neutral-100">{o}</button>
                 ))}
                 <Link href="/settings" className="block rounded-lg px-3 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">+ Create workspace</Link>
               </motion.div>
@@ -84,20 +84,20 @@ export function Shell({ children, userName = "Henkyaa Japheth", userRole = "Admi
       <aside className="hidden w-[272px] shrink-0 border-r border-neutral-200 bg-paper lg:block">{sidebar}</aside>
       <AnimatePresence>{open && (
         <motion.div initial={{ x: -280 }} animate={{ x: 0 }} exit={{ x: -280 }} transition={{ duration: 0.22 }} className="fixed inset-y-0 left-0 z-50 w-[272px] border-r border-neutral-200 bg-paper lg:hidden">
-          <button onClick={() => setOpen(false)} className="absolute right-3 top-3 rounded-full border border-neutral-300 p-1.5"><X size={16} /></button>
+          <button onClick={() => setOpen(false)} aria-label="Close menu" className="absolute right-3 top-3 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-neutral-300"><X size={16} /></button>
           {sidebar}
         </motion.div>
       )}</AnimatePresence>
       <div className="min-w-0 flex-1">
         <header className="sticky top-0 z-30 border-b border-neutral-200 bg-paper/90 backdrop-blur">
           <div className="mx-auto flex max-w-[1200px] items-center gap-3 px-4 py-3 md:px-8">
-            <button onClick={() => setOpen(true)} className="rounded-lg border border-neutral-200 bg-white p-2 lg:hidden"><Menu size={18} /></button>
+            <button onClick={() => setOpen(true)} aria-label="Open menu" className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border border-neutral-200 bg-white lg:hidden"><Menu size={18} /></button>
             <div className="hidden flex-1 items-center gap-2 rounded-xl border border-neutral-200 bg-white px-3 py-2 md:flex">
-              <Search size={16} className="text-neutral-400" /><input placeholder="Search documents, requests, filings…" className="w-full bg-transparent text-sm outline-none placeholder:text-neutral-400" />
+              <Search size={16} className="text-neutral-400" /><input aria-label="Search documents, requests, filings" placeholder="Search documents, requests, filings…" className="w-full bg-transparent text-sm outline-none placeholder:text-neutral-400" />
               <kbd className="mono-meta rounded border border-neutral-200 bg-neutral-50 px-1.5 py-0.5 text-neutral-400">⌘K</kbd>
             </div>
-            <Link href="/notifications" className="relative rounded-lg border border-neutral-200 bg-white p-2 transition hover:bg-neutral-50"><Bell size={18} /><span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-paper" /></Link>
-            <Link href="/settings" className="hidden rounded-lg bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-charcoal sm:block">Invite</Link>
+            <Link href="/notifications" aria-label="Notifications, unread" className="relative flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border border-neutral-200 bg-white transition hover:bg-neutral-50"><Bell size={18} /><span className="absolute right-2 top-2 h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-paper" /></Link>
+            <Link href="/people" className="hidden min-h-[44px] items-center rounded-lg bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-charcoal sm:inline-flex">Invite</Link>
           </div>
         </header>
         <main className="mx-auto max-w-[1200px] px-4 py-6 md:px-8 md:py-8">{children}</main>

@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DEMO_ENGAGEMENTS, DEMO_REQUESTS, DEMO_DOCS, DEMO_ACTIVITY } from "@/lib/demo";
 import { StatusPill, PageWrap } from "@/components/ui";
@@ -13,17 +13,24 @@ export default function EngagementDetail({ params }: { params: { id: string } })
   const [tab, setTab] = useState("Overview");
   const [selected, setSelected] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (!selected) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setSelected(null); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selected]);
+
   return (
     <PageWrap>
       <p className="mono-meta text-neutral-500">ENGAGEMENT · {eng.id.toUpperCase()} · HASH-CHAINED</p>
       <div className="mt-1 flex flex-wrap items-start justify-between gap-3">
         <div><h1 className="font-display text-4xl font-black md:text-5xl">{eng.title}</h1><p className="text-sm text-neutral-500">{eng.org} · {eng.period}</p><p className="mt-1 max-w-xl text-sm text-neutral-600">{eng.desc}</p></div>
-        <div className="flex gap-2"><button className="card-brutal-sm rounded-2xl bg-white px-4 py-2 text-sm font-black">Invite</button><button className="card-brutal-sm rounded-2xl bg-ink px-4 py-2 text-sm font-black text-white">Settings</button></div>
+        <div className="flex gap-2"><Link href="/people" className="card-brutal-sm min-h-[44px] inline-flex items-center rounded-2xl bg-white px-4 py-2 text-sm font-black">Invite</Link><Link href="/settings" className="card-brutal-sm min-h-[44px] inline-flex items-center rounded-2xl bg-ink px-4 py-2 text-sm font-black text-white">Settings</Link></div>
       </div>
 
       <div className="mt-5 flex gap-2 overflow-x-auto border-b border-neutral-200 pb-2">
         {TABS.map((t) => (
-          <button key={t} onClick={() => setTab(t)} className={`whitespace-nowrap rounded-full border px-4 py-1.5 text-sm font-bold transition ${tab === t ? "border-ink bg-ink text-white" : "border-neutral-200 bg-white text-neutral-600 hover:border-neutral-400"}`}>{t}</button>
+          <button key={t} onClick={() => setTab(t)} className={`whitespace-nowrap rounded-full border px-4 py-2 text-sm font-bold transition ${tab === t ? "border-ink bg-ink text-white" : "border-neutral-200 bg-white text-neutral-600 hover:border-neutral-400"}`}>{t}</button>
         ))}
       </div>
 
@@ -58,11 +65,11 @@ export default function EngagementDetail({ params }: { params: { id: string } })
                 { t: "10:32", title: "Changes requested", sub: "Missing page 4 · reason logged to trail", doc: "doc-1" },
                 { t: "11:17", title: "Sarah uploaded v2", sub: "Bank Statement — September 2026 · v2 · hash 9f2c…a1", doc: "doc-1" },
                 { t: "11:43", title: "Michael approved", sub: "Version 2 · prev → new recorded", doc: "doc-1" },
-                { t: "12:01", title: "Engagement progress 78% → 82%", sub: "REQ-025 completed · auto-recalculated", doc: null },
+                { t: "12:01", title: "Engagement progress 74% → 78%", sub: "REQ-025 completed · auto-recalculated", doc: null },
               ].map((e, i) => (
-                <motion.button key={e.t} initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}
+                <motion.button key={e.t} disabled={!e.doc} aria-disabled={!e.doc} initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}
                   onClick={() => e.doc && setSelected(e.doc)}
-                  className="group flex w-full gap-4 text-left">
+                  className="group flex w-full gap-4 text-left disabled:cursor-default">
                   <span className="mono-meta w-12 shrink-0 pt-1.5">{e.t}</span>
                   <span className="flex flex-col items-center"><span className={`h-2.5 w-2.5 rounded-full ring-1 ring-black/10 ${i===5?"bg-emerald-500":"bg-white group-hover:bg-emerald-300"} transition`} />{i<5 && <span className="w-px flex-1 bg-neutral-200" style={{ minHeight: 30 }} />}</span>
                   <span className="rounded-2xl border border-transparent px-3 pb-4 transition group-hover:border-neutral-200 group-hover:bg-white">
@@ -80,10 +87,10 @@ export default function EngagementDetail({ params }: { params: { id: string } })
       {tab === "Requests" && (
         <div className="mt-6 space-y-3">
           {DEMO_REQUESTS.map((r) => (
-            <Link key={r.id} href="/requests" className="card-brutal-sm block rounded-2xl bg-white p-4 hover:-translate-y-[1px] transition">
+            <div key={r.id} className="card-brutal-sm rounded-2xl bg-white p-4">
               <div className="flex flex-wrap items-center justify-between gap-2"><p className="font-black">{r.title}</p><StatusPill status={r.status} /></div>
               <p className="mono-meta mt-1 text-neutral-500">{r.code} · FROM {r.from.toUpperCase()} · ASSIGNED {r.assignee.toUpperCase()}</p>
-            </Link>
+            </div>
           ))}
         </div>
       )}
@@ -108,13 +115,13 @@ export default function EngagementDetail({ params }: { params: { id: string } })
       <AnimatePresence>
         {selected && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-4 md:items-center" onClick={() => setSelected(null)}>
-            <motion.div initial={{ y: 60, scale: 0.98 }} animate={{ y: 0, scale: 1 }} exit={{ y: 60, opacity: 0 }} transition={{ type: "spring", damping: 26 }} onClick={(e) => e.stopPropagation()} className="card-brutal w-full max-w-lg rounded-3xl bg-white p-6">
-              {(() => { const d = DEMO_DOCS.find((x) => x.id === selected)!; return (
+            <motion.div role="dialog" aria-modal="true" aria-label="Event detail" initial={{ y: 60, scale: 0.98 }} animate={{ y: 0, scale: 1 }} exit={{ y: 60, opacity: 0 }} transition={{ type: "spring", damping: 26 }} onClick={(e) => e.stopPropagation()} className="card-brutal w-full max-w-lg rounded-3xl bg-white p-6">
+              {(() => { const d = DEMO_DOCS.find((x) => x.id === selected)!; const vers = Array.from({ length: d.version }, (_, k) => d.version - k); return (
                 <div><p className="mono-meta text-neutral-500">{d.code} · CLICK-THROUGH FROM TIMELINE</p>
                 <p className="mt-1 text-xl font-black">{d.title}</p>
                 <p className="text-sm text-neutral-600">Uploaded by {d.by} · Version {d.version} · {d.size}</p>
-                <div className="mt-3 rounded-2xl border border-neutral-200 bg-paper p-3 text-sm"><p className="font-black">Version history</p><p className="mono-meta">v2 · {d.by} · 14 Sept 10:42 ✓ current</p><p className="mono-meta">v1 · {d.by} · 12 Sept 09:18</p></div>
-                <div className="mt-3 rounded-2xl bg-emerald-50 border border-emerald-600 p-3 text-sm"><p className="font-black text-emerald-800">Michael approved ✓</p><p className="text-xs">Related request REQ-023 · 2 comments · full history in trail</p></div>
+                <div className="mt-3 rounded-2xl border border-neutral-200 bg-paper p-3 text-sm"><p className="font-black">Version history</p>{vers.map((v) => (<p key={v} className="mono-meta">v{v} · {d.by} · {v === d.version ? `${d.date} ✓ current` : "earlier version"}</p>))}</div>
+                <div className={`mt-3 rounded-2xl border p-3 text-sm ${d.approved ? "border-emerald-600 bg-emerald-50" : d.reviewed ? "border-amber-400 bg-amber-50" : "bg-neutral-100 border-neutral-200"}`}><p className={`font-black ${d.approved ? "text-emerald-800" : d.reviewed ? "text-amber-800" : "text-neutral-600"}`}>{d.approved ? "Approved ✓" : d.reviewed ? "Under review" : "Awaiting review"}</p><p className="text-xs text-neutral-600">{d.code} · {d.category} · full history in trail</p></div>
                 <div className="mt-4 flex gap-2"><Link href={`/documents/${d.id}`} className="flex-1 rounded-2xl bg-ink py-2.5 text-center text-sm font-black text-white">Open document →</Link><button onClick={() => setSelected(null)} className="rounded-2xl border border-neutral-200 px-4 text-sm font-bold">Close</button></div></div> ); })()}
             </motion.div>
           </motion.div>

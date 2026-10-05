@@ -17,7 +17,7 @@ export const DEMO_PEOPLE = [
 ];
 
 export const DEMO_ENGAGEMENTS = [
-  { id: "eng-2026", title: "2026 External Audit", org: "Apex Manufacturing Ltd.", firm: "Meridian Audit Partners", progress: 78, done: 23, total: 29, due: "30 Sept 2026", status: "active", period: "01 Jan — 30 Sept 2026", desc: "Statutory external audit for FY2026. Evidence, requests and approvals live here." },
+  { id: "eng-2026", title: "2026 External Audit", org: "Apex Manufacturing Ltd.", firm: "Meridian Audit Partners", progress: 78, done: 23, total: 29, due: "30 Dec 2026", status: "active", period: "01 Jan — 30 Sept 2026", desc: "Statutory external audit for FY2026. Evidence, requests and approvals live here." },
   { id: "eng-2025", title: "2025 Financial Audit", org: "Apex Manufacturing Ltd.", firm: "Meridian Audit Partners", progress: 100, done: 31, total: 31, due: "28 Feb 2026", status: "completed", period: "01 Jan — 31 Dec 2025", desc: "Prior year statutory audit. Archived." },
   { id: "eng-controls", title: "Internal Controls Review", org: "Apex Manufacturing Ltd.", firm: "Internal", progress: 45, done: 9, total: 20, due: "15 Nov 2026", status: "active", period: "Ongoing", desc: "SOX-like controls walkthrough." },
   { id: "eng-tax", title: "Tax Compliance Review", org: "Apex Manufacturing Ltd.", firm: "Meridian Audit Partners", progress: 20, done: 2, total: 10, due: "30 June 2027", status: "active", period: "FY2026", desc: "Corporate tax evidence pack." },
@@ -25,7 +25,7 @@ export const DEMO_ENGAGEMENTS = [
 ];
 
 export const DEMO_REQUESTS = [
-  { id: "req-01", code: "REQ-023", title: "Bank statements — Jan–Sep 2026", from: "ABC Finance", assignee: "Sarah Okafor", status: "submitted", due: "20 Sept 2026", priority: "high", category: "Bank statements", engagement: "2026 External Audit", desc: "Full monthly statements including September close." },
+  { id: "req-01", code: "REQ-023", title: "Bank statements — Jan–Sep 2026", from: "Finance", assignee: "Sarah Okafor", status: "submitted", due: "20 Sept 2026", priority: "high", category: "Bank statements", engagement: "2026 External Audit", desc: "Full monthly statements including September close." },
   { id: "req-02", code: "REQ-024", title: "Supplier invoices — Q3 2026", from: "Procurement", assignee: "Sarah Okafor", status: "under_review", due: "22 Sept 2026", priority: "medium", category: "Invoices", engagement: "2026 External Audit", desc: "All supplier invoices > ₦500k." },
   { id: "req-03", code: "REQ-025", title: "Payroll summary — September", from: "HR & Payroll", assignee: "Daniel Ibrahim", status: "approved", due: "18 Sept 2026", priority: "medium", category: "Payroll", engagement: "2026 External Audit", desc: "PAYE, pension schedules." },
   { id: "req-04", code: "REQ-026", title: "Bank reconciliation evidence", from: "Finance", assignee: "Sarah Okafor", status: "overdue", due: "2 days overdue", priority: "urgent", category: "Bank statements", engagement: "2026 External Audit", desc: "Reconciliation with outstanding items." },

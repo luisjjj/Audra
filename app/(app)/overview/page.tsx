@@ -17,13 +17,13 @@ export default function Overview() {
           <div>
             <p className="mono-meta text-white/60">2026 AUDIT · {eng.org.toUpperCase()}</p>
             <p className="font-display mt-2 text-4xl font-black md:text-5xl">{eng.progress}%<span className="ml-3 align-middle text-sm font-bold tracking-widest text-white/60">ENGAGEMENT COMPLETE</span></p>
-            <p className="mt-3 text-sm text-white/80">{eng.done} / {eng.total} requests completed · 6 items need attention</p>
+            <p className="mt-3 text-sm text-white/80">{eng.done} / {eng.total} requests completed · 5 items need attention</p>
             <div className="mt-4 h-3 overflow-hidden rounded-full border border-white/30 bg-white/10">
               <div className="h-full rounded-full bg-emerald-400" style={{ width: `${eng.progress}%` }} />
             </div>
             <div className="mt-5 flex flex-wrap gap-2">
-              <Link href="/engagements/eng-2026" className="rounded-2xl bg-emerald-500 px-5 py-2.5 text-sm font-black text-ink">Open engagement →</Link>
-              <Link href="/requests" className="rounded-2xl border border-white/30 px-5 py-2.5 text-sm font-bold">Review requests</Link>
+              <Link href="/engagements/eng-2026" className="min-h-[44px] inline-flex items-center rounded-2xl bg-emerald-500 px-5 py-2.5 text-sm font-black text-ink">Open engagement →</Link>
+              <Link href="/requests" className="min-h-[44px] inline-flex items-center rounded-2xl border border-white/30 px-5 py-2.5 text-sm font-bold">Review requests</Link>
             </div>
           </div>
           <ProgressRing value={eng.progress} />
@@ -31,11 +31,11 @@ export default function Overview() {
       </Reveal>
 
       <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
-        {[["ACTIVE ENGAGEMENTS","4"],["OPEN REQUESTS","12"],["PENDING REVIEWS","7"],["FILINGS DUE","3"]].map(([k,v],i)=>(
+        {[["ACTIVE ENGAGEMENTS","4"],["OPEN REQUESTS","5"],["PENDING REVIEWS","2"],["FILINGS DUE","3"]].map(([k,v],i)=>(
           <Reveal key={k} delay={i*0.06}>
             <div className={`card-brutal rounded-3xl p-5 ${i===0?"bg-emerald-600 text-white":i===1?"bg-white":i===2?"bg-white":"bg-ink text-white"}`}>
               <p className="mono-meta opacity-70">{k}</p>
-              <p className="font-display mt-1 text-5xl font-black">{v}</p>
+              <p className="font-display mt-1 text-4xl font-black md:text-5xl">{v}</p>
             </div>
           </Reveal>
         ))}
@@ -50,7 +50,7 @@ export default function Overview() {
                 <Link href={a.link} className="card-brutal-sm group flex items-center justify-between gap-3 rounded-2xl bg-white p-4 hover:-translate-y-[2px] transition">
                   <div className="flex gap-3">
                     <span className={`mt-1 h-3 w-3 shrink-0 rounded-full ${a.level==="red"?"bg-red-500":a.level==="amber"?"bg-amber-400":"bg-emerald-500"}`} />
-                    <div><p className="text-sm font-black">{a.title}</p><p className="text-xs text-neutral-500">{a.sub}</p><p className="mono-meta mt-1 text-neutral-500">{a.meta}</p></div>
+                    <div><p className="text-sm font-black"><span className="sr-only">{a.level === "red" ? "Urgent: " : a.level === "amber" ? "Attention needed: " : "Update: "}</span>{a.title}</p><p className="text-xs text-neutral-500">{a.sub}</p><p className="mono-meta mt-1 text-neutral-500">{a.meta}</p></div>
                   </div>
                   <ArrowUpRight className="shrink-0 transition group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" size={18} />
                 </Link>

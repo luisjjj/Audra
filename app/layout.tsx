@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen antialiased" style={{ fontFamily: "Inter, Manrope, system-ui, sans-serif" }}>
+      <body className="min-h-screen antialiased" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
         {children}
       </body>
     </html>

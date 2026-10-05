@@ -47,7 +47,7 @@ export default function Landing() {
         </p>
       </div>
 
-      <main className="mx-auto max-w-[1200px] px-4 pb-20 md:px-6">
+      <main className="mx-auto max-w-[1200px] overflow-x-clip px-4 pb-20 md:px-6">
         {/* Massive condensed hero */}
         <motion.div {...rise(0)} className="pt-8 text-center md:pt-12">
           <p className="mono-meta inline-block rounded-full bg-white px-3 py-1 shadow-sm">AUDIT · EVIDENCE · TRACEABILITY</p>
@@ -61,10 +61,10 @@ export default function Landing() {
             Everything that happened, stays accounted for.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            <Link href="/overview" className="inline-flex items-center gap-2 rounded-2xl bg-emerald-600 px-6 py-3 font-bold text-white shadow-[0_16px_32px_-16px_rgba(11,122,75,0.7)] transition hover:-translate-y-[2px]">
+            <Link href="/overview" className="inline-flex min-h-[44px] items-center gap-2 rounded-2xl bg-emerald-600 px-6 py-3 font-bold text-white shadow-[0_16px_32px_-16px_rgba(11,122,75,0.7)] transition hover:-translate-y-[2px]">
               Open workspace <ArrowRight size={18} />
             </Link>
-            <Link href="/engagements/eng-2026" className="inline-flex items-center gap-2 rounded-2xl bg-white px-6 py-3 font-bold shadow-[0_16px_32px_-20px_rgba(11,11,11,0.4)] transition hover:-translate-y-[2px]">
+            <Link href="/engagements/eng-2026" className="inline-flex min-h-[44px] items-center gap-2 rounded-2xl bg-white px-6 py-3 font-bold shadow-[0_16px_32px_-20px_rgba(11,11,11,0.4)] transition hover:-translate-y-[2px]">
               See audit timeline
             </Link>
           </div>
@@ -75,7 +75,7 @@ export default function Landing() {
 
         {/* Product mock with stickers */}
         <motion.div {...rise(0.1)} className="relative mx-auto mt-10 max-w-[560px]">
-          <span className="sticker absolute -left-3 -top-4 z-10 -rotate-12 bg-lime text-ink">HASH-CHAINED ✓</span>
+          <span className="sticker absolute -left-2 -top-4 z-10 -rotate-12 bg-lime text-ink">HASH-CHAINED ✓</span>
           <span className="sticker absolute -right-2 top-16 z-10 rotate-6 bg-white text-ink">78% COMPLETE</span>
           <div className="card-brutal floaty rounded-[28px] bg-ink p-4 text-white md:p-5">
             <div className="rounded-2xl bg-white p-4 text-ink md:p-5">
@@ -110,7 +110,7 @@ export default function Landing() {
             works on AUDRA
           </motion.h2>
           <div ref={howRef} className="snap-row no-scrollbar -mx-4 mt-6 flex gap-4 overflow-x-auto px-4 pb-2 md:mx-0 md:px-0">
-            <HowCard sticker="STEP 01" stickerClass="bg-[#FF5C38] text-white -rotate-6" title="Request" body="Ask Finance for exactly what you need. Owner, due date, required docs — logged to the trail." footer="Scoped requests" caption="Assigned, due, traceable" dark={false} />
+            <HowCard sticker="STEP 01" stickerClass="bg-ink text-white -rotate-6" title="Request" body="Ask Finance for exactly what you need. Owner, due date, required docs — logged to the trail." footer="Scoped requests" caption="Assigned, due, traceable" dark={false} />
             <HowCard sticker="STEP 02" stickerClass="bg-lime text-ink rotate-3" title="Submit & review" body="Evidence lands versioned. Reviewers comment, request changes — never a silent overwrite." footer="v1 → v2 → approved" caption="Versions, comments, reviews" dark={false} solid />
             <HowCard sticker="STEP 03" stickerClass="bg-white text-ink -rotate-3" title="Approve & trail" body="Approvals draw the trail shut. Who did what, when, what changed — hash-chained." footer="Nothing lost" caption="Approvals + append-only log" dark />
           </div>
@@ -166,7 +166,7 @@ export default function Landing() {
               ["10:32", "Changes requested"],
               ["11:17", "Sarah uploaded v2"],
               ["11:43", "Michael approved"],
-              ["12:01", "Progress 78% → 82%"],
+              ["12:01", "Progress 74% → 78%"],
             ].map(([t, e], i) => (
               <motion.div key={t} initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="flex gap-4">
                 <span className="mono-meta w-12 shrink-0 pt-1 text-white/60">{t}</span>
@@ -212,8 +212,8 @@ function HowCard({ sticker, stickerClass, title, body, footer, caption, dark, so
 function CarouselDots({ onPrev, onNext }: { onPrev: () => void; onNext: () => void }) {
   return (
     <div className="mt-3 flex items-center gap-2">
-      <button onClick={onPrev} aria-label="Scroll left" className="h-8 rounded-full bg-neutral-200/70 px-3 text-sm font-bold transition hover:bg-neutral-300">←</button>
-      <button onClick={onNext} aria-label="Scroll right" className="h-8 rounded-full bg-neutral-200/70 px-3 text-sm font-bold transition hover:bg-neutral-300">→</button>
+      <button onClick={onPrev} aria-label="Scroll left" className="h-11 min-w-[44px] rounded-full bg-neutral-200/70 px-3 text-sm font-bold transition hover:bg-neutral-300">←</button>
+      <button onClick={onNext} aria-label="Scroll right" className="h-11 min-w-[44px] rounded-full bg-neutral-200/70 px-3 text-sm font-bold transition hover:bg-neutral-300">→</button>
       <span className="mono-meta ml-1 text-neutral-400">SCROLL →</span>
     </div>
   );

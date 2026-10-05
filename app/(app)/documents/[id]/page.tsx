@@ -18,7 +18,7 @@ export default function DocDetail({ params }: { params: { id: string } }) {
             <p className="mt-2 text-sm font-bold">{d.title} · {d.size}</p>
           </div>
           <div className="mt-4 rounded-2xl bg-neutral-50 border p-4 text-sm">
-            <p className="font-black flex items-center gap-2"><MessageSquare size={15} /> Michael Adams</p>
+            <p className="font-black flex items-center gap-2"><MessageSquare size={15} /> Michael Adeyemi</p>
             <p className="mt-1 text-neutral-700">Can we get the complete statement? Page 4 appears to be missing.</p>
             <button className="mt-2 text-xs font-black underline">Reply</button>
             <div className="ml-4 mt-3 border-l-2 border-neutral-200 pl-3"><p className="text-xs font-black">Sarah Okafor <span className="mono-meta font-normal">· v2 uploaded with page 4</span></p></div>
@@ -28,7 +28,7 @@ export default function DocDetail({ params }: { params: { id: string } }) {
           <div className="card-brutal rounded-3xl bg-white p-5">
             <p className="mono-meta text-neutral-500">METADATA</p>
             <div className="mt-2 space-y-1.5 text-sm">
-              <p><b>Uploaded by</b> {d.by}</p><p><b>Uploaded</b> 14 Sept 2026, 10:42 AM</p>
+              <p><b>Uploaded by</b> {d.by}</p><p><b>Uploaded</b> {d.date}</p>
               <p><b>Version</b> {d.version}</p><p><b>Status</b> {d.approved ? "Approved ✓" : "Under review"}</p>
               <p className="mono-meta">SHA 9f2c…a1 · PREV 41bd…07 · CHAINED</p>
             </div>
@@ -42,8 +42,9 @@ export default function DocDetail({ params }: { params: { id: string } }) {
           <div className="card-brutal rounded-3xl bg-ink p-5 text-white">
             <p className="mono-meta text-white/60 flex items-center gap-2"><History size={12} /> VERSION HISTORY</p>
             <div className="mt-3 space-y-2 text-sm">
-              <div className="rounded-xl bg-white/10 p-3"><p className="font-black">v2 · current ✓</p><p className="mono-meta text-white/60">{d.by} · 14 Sept 10:42</p></div>
-              <div className="rounded-xl bg-white/5 p-3"><p className="font-bold">v1</p><p className="mono-meta text-white/60">{d.by} · 12 Sept 09:18</p></div>
+              {Array.from({ length: d.version }, (_, k) => d.version - k).map((v) => (
+                <div key={v} className={`rounded-xl p-3 ${v === d.version ? "bg-white/10" : "bg-white/5"}`}><p className={v === d.version ? "font-black" : "font-bold"}>v{v}{v === d.version ? " · current ✓" : ""}</p><p className="mono-meta text-white/60">{d.by} · {v === d.version ? d.date : "earlier version"}</p></div>
+              ))}
             </div>
             <p className="mono-meta mt-3 text-white/50">NEVER SILENTLY OVERWRITTEN.</p>
           </div>
