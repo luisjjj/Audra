@@ -8,12 +8,11 @@ module.exports = {
         ink: "#0B0B0B",
         charcoal: "#171917",
         audit: { 50:"#ECFDF5",100:"#D1FAE5",500:"#0B7A4B",600:"#0A6B42",700:"#084F31",900:"#0A2E1E" },
-        lime: "#C8F04A",
         line: "#111111",
       },
       fontFamily: {
         sans: ["Inter", "Manrope", "system-ui", "sans-serif"],
-        display: ["Anton", "Inter", "system-ui", "sans-serif"],
+        display: ["Inter", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       borderRadius: { xl2: "1.25rem", xl3: "1.75rem" },

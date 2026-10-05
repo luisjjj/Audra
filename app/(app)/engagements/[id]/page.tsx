@@ -64,9 +64,9 @@ export default function EngagementDetail({ params }: { params: { id: string } })
                   onClick={() => e.doc && setSelected(e.doc)}
                   className="group flex w-full gap-4 text-left">
                   <span className="mono-meta w-12 shrink-0 pt-1.5">{e.t}</span>
-                  <span className="flex flex-col items-center"><span className={`h-3.5 w-3.5 rounded-full border-[1.5px] border-black ${i===5?"bg-emerald-500 pulse-dot":"bg-white group-hover:bg-emerald-400"} transition`} />{i<5 && <span className="w-[2px] flex-1 bg-black/15" style={{ minHeight: 30 }} />}</span>
+                  <span className="flex flex-col items-center"><span className={`h-2.5 w-2.5 rounded-full ring-1 ring-black/10 ${i===5?"bg-emerald-500":"bg-white group-hover:bg-emerald-300"} transition`} />{i<5 && <span className="w-px flex-1 bg-neutral-200" style={{ minHeight: 30 }} />}</span>
                   <span className="rounded-2xl border-[1.5px] border-transparent px-3 pb-4 group-hover:border-black group-hover:bg-paper transition">
-                    <span className="block text-sm font-black">────● {e.title}</span>
+                    <span className="block text-sm font-semibold">{e.title}</span>
                     <span className="mono-meta text-neutral-500">{e.sub}</span>
                   </span>
                 </motion.button>

@@ -19,22 +19,22 @@ export function Reveal({ children, delay = 0 }: { children: React.ReactNode; del
 
 export function StatusPill({ status }: { status: string }) {
   const map: Record<string, string> = {
-    pending: "bg-yellow-100 border-yellow-600 text-yellow-900",
-    submitted: "bg-blue-50 border-black text-black",
-    under_review: "bg-orange-100 border-orange-700 text-orange-900",
-    changes_requested: "bg-red-100 border-red-700 text-red-900",
-    approved: "bg-emerald-100 border-emerald-700 text-emerald-900",
-    completed: "bg-emerald-600 border-black text-white",
-    overdue: "bg-red-600 border-black text-white",
-    active: "bg-emerald-100 border-emerald-700 text-emerald-900",
-    draft: "bg-neutral-100 border-black text-black",
-    prepared: "bg-blue-50 border-black text-black",
-    ready_for_review: "bg-orange-100 border-black text-black",
-    accepted: "bg-emerald-600 border-black text-white",
+    pending: "bg-amber-50 text-amber-800",
+    submitted: "bg-sky-50 text-sky-800",
+    under_review: "bg-orange-50 text-orange-800",
+    changes_requested: "bg-red-50 text-red-700",
+    approved: "bg-emerald-50 text-emerald-800",
+    completed: "bg-emerald-700 text-white",
+    overdue: "bg-red-600 text-white",
+    active: "bg-emerald-50 text-emerald-800",
+    draft: "bg-neutral-100 text-neutral-700",
+    prepared: "bg-sky-50 text-sky-800",
+    ready_for_review: "bg-orange-50 text-orange-800",
+    accepted: "bg-emerald-700 text-white",
   };
-  const cls = map[status] ?? "bg-white border-black text-black";
+  const cls = map[status] ?? "bg-neutral-100 text-neutral-700";
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full border-[1.5px] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide ${cls}`}>
+    <span className={`inline-flex items-center gap-1.5 rounded-full border border-black/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide ${cls}`}>
       <span className="h-1.5 w-1.5 rounded-full bg-current" />
       {status.replaceAll("_", " ")}
     </span>
