@@ -1,0 +1,31 @@
+declare module "lucide-react" {
+  import type { SVGProps, FC } from "react";
+  export type LucideProps = SVGProps<SVGSVGElement> & { size?: number | string };
+  const C: FC<LucideProps>;
+  export const LayoutDashboard: typeof C;
+  export const Briefcase: typeof C;
+  export const Inbox: typeof C;
+  export const Files: typeof C;
+  export const Landmark: typeof C;
+  export const Users: typeof C;
+  export const Building2: typeof C;
+  export const Activity: typeof C;
+  export const Settings: typeof C;
+  export const Bell: typeof C;
+  export const Search: typeof C;
+  export const Menu: typeof C;
+  export const X: typeof C;
+  export const ArrowRight: typeof C;
+  export const ArrowUpRight: typeof C;
+  export const ShieldCheck: typeof C;
+  export const FileCheck: typeof C;
+  export const Upload: typeof C;
+  export const Download: typeof C;
+  export const MessageSquare: typeof C;
+  export const Share2: typeof C;
+  export const History: typeof C;
+  export const Clock: typeof C;
+  export const Lock: typeof C;
+  const _default: { [k: string]: typeof C };
+  export default _default;
+}

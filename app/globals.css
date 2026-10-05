@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html, body { background: #F4F3EF; color: #0B0B0B; }
+::selection { background: #0B7A4B; color: white; }
+
+/* Editorial + ref-inspired condensed hero. Anton, uppercase, tight — original Audra wording. */
+.font-display { letter-spacing: -0.04em; line-height: 0.92; }
+.font-ugly { font-family: Anton, Inter, system-ui, sans-serif; text-transform: uppercase; letter-spacing: -0.01em; line-height: 0.88; }
+
+.card-brutal { border: 1.5px solid #0B0B0B; box-shadow: 4px 4px 0 0 #0B0B0B; }
+.card-brutal-sm { border: 1.5px solid #0B0B0B; box-shadow: 2px 2px 0 0 #0B0B0B; }
+.mono-meta { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; letter-spacing: 0.02em; }
+
+/* Floating pill nav, inspired by ref's centered pill header — Audra-original styling */
+.pill-nav {
+  border: 1.5px solid rgba(11, 11, 11, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(11, 11, 11, 0.08);
+}
+
+/* Rotated sticker badges (ref uses BOOST stickers) — Audra audit stickers */
+.sticker {
+  display: inline-block;
+  font-family: Anton, Inter, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border: 1.5px solid #0B0B0B;
+  box-shadow: 2px 2px 0 0 #0B0B0B;
+}
+
+/* Horizontal snap carousel like ref's card rows */
+.snap-row { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.snap-row > * { scroll-snap-align: start; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #F4F3EF; }
+::-webkit-scrollbar-thumb { background: #0B0B0B; border-radius: 8px; border: 2px solid #F4F3EF; }
+
+/* timeline pulse */
+@keyframes pulse-dot { 0%,100% { transform: scale(1); opacity:1;} 50% { transform: scale(1.35); opacity:.7;} }
+.pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+
+/* soft float for hero mock */
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.floaty { animation: floaty 5s ease-in-out infinite; }
