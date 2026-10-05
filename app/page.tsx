@@ -50,7 +50,6 @@ export default function Landing() {
       <main className="mx-auto max-w-[1200px] overflow-x-clip px-4 pb-20 md:px-6">
         {/* Massive condensed hero */}
         <motion.div {...rise(0)} className="pt-8 text-center md:pt-12">
-          <p className="mono-meta inline-block rounded-full bg-white px-3 py-1 shadow-sm">AUDIT · EVIDENCE · TRACEABILITY</p>
           <h1 className="font-ugly mx-auto mt-5 max-w-[1000px] text-[17vw] md:text-[132px]">
             YOUR AUDIT
             <br />

@@ -60,7 +60,7 @@ export function Shell({ children, userName = "Henkyaa Japheth", userRole = "Admi
               {g.items.map((it) => {
                 const active = path === it.href || path?.startsWith(it.href + "/");
                 return (
-                  <Link key={it.href} href={it.href} className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition ${active ? "bg-ink font-semibold text-white" : "font-medium text-neutral-600 hover:bg-white hover:text-black"}`}>
+                  <Link key={it.href} href={it.href} className={`flex min-h-[44px] items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition ${active ? "bg-ink font-semibold text-white" : "font-medium text-neutral-600 hover:bg-white hover:text-black"}`}>
                     <it.icon size={17} strokeWidth={active ? 2.25 : 1.75} />
                     {it.label}
                   </Link>

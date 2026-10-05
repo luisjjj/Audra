@@ -5,6 +5,7 @@
 :root { color-scheme: light; }
 :focus-visible { outline: 2px solid #0A6B42; outline-offset: 2px; }
 html, body { background: #F4F3EF; color: #0B0B0B; }
+body { overflow-x: clip; }
 ::selection { background: #0B7A4B; color: white; }
 
 /* Editorial + condensed display. Anton for oversized statements, Inter elsewhere. */

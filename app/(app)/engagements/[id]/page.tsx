@@ -30,7 +30,7 @@ export default function EngagementDetail({ params }: { params: { id: string } })
 
       <div className="mt-5 flex gap-2 overflow-x-auto border-b border-neutral-200 pb-2">
         {TABS.map((t) => (
-          <button key={t} onClick={() => setTab(t)} className={`whitespace-nowrap rounded-full border px-4 py-2 text-sm font-bold transition ${tab === t ? "border-ink bg-ink text-white" : "border-neutral-200 bg-white text-neutral-600 hover:border-neutral-400"}`}>{t}</button>
+          <button key={t} onClick={() => setTab(t)} className={`inline-flex min-h-[44px] items-center whitespace-nowrap rounded-full border px-4 py-2 text-sm font-bold transition ${tab === t ? "border-ink bg-ink text-white" : "border-neutral-200 bg-white text-neutral-600 hover:border-neutral-400"}`}>{t}</button>
         ))}
       </div>
 
