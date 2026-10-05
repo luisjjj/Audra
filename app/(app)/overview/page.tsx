@@ -49,7 +49,7 @@ export default function Overview() {
               <Reveal key={a.id} delay={i*0.05}>
                 <Link href={a.link} className="card-brutal-sm group flex items-center justify-between gap-3 rounded-2xl bg-white p-4 hover:-translate-y-[2px] transition">
                   <div className="flex gap-3">
-                    <span className={`mt-1 h-3 w-3 shrink-0 rounded-full border border-black ${a.level==="red"?"bg-red-500":a.level==="amber"?"bg-amber-400":"bg-emerald-500"}`} />
+                    <span className={`mt-1 h-3 w-3 shrink-0 rounded-full ${a.level==="red"?"bg-red-500":a.level==="amber"?"bg-amber-400":"bg-emerald-500"}`} />
                     <div><p className="text-sm font-black">{a.title}</p><p className="text-xs text-neutral-500">{a.sub}</p><p className="mono-meta mt-1 text-neutral-500">{a.meta}</p></div>
                   </div>
                   <ArrowUpRight className="shrink-0 transition group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" size={18} />

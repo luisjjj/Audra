@@ -16,7 +16,7 @@ export default function Engagements() {
             <div className={`card-brutal rounded-3xl p-6 ${i === 0 ? "bg-white" : "bg-white/80"}`}>
               <div className="flex items-start justify-between">
                 <div><p className="mono-meta text-neutral-500">ENG-{e.id.toUpperCase()} · {e.status.toUpperCase()}</p><p className="mt-1 text-xl font-black">{e.title}</p><p className="text-xs text-neutral-500">{e.org} · {e.firm}</p></div>
-                <span className="rounded-full border-[1.5px] border-black bg-emerald-100 px-2 py-0.5 text-[11px] font-black">{e.progress}%</span>
+                <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-bold text-emerald-800">{e.progress}%</span>
               </div>
               <div className="mt-4"><Bar value={e.progress} /><p className="mono-meta mt-2 text-neutral-500">{e.done} / {e.total} requests complete · Due {e.due}</p></div>
               <Link href={`/engagements/${e.id}`} className="card-brutal-sm mt-4 block rounded-2xl bg-ink py-2.5 text-center text-sm font-black text-white hover:-translate-y-[1px] transition">Open Engagement →</Link>

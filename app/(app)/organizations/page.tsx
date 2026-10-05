@@ -12,7 +12,7 @@ export default function Orgs() {
         <div className="card-brutal rounded-3xl bg-white p-6">
           <p className="mono-meta">YOUR WORKSPACE</p><p className="text-xl font-black">Apex Manufacturing Ltd.</p>
           <p className="text-sm text-neutral-500">Owner · 12 members · 5 engagements</p>
-          <div className="mt-3 rounded-2xl bg-paper border-[1.5px] border-black p-3 text-sm"><p className="font-black">Shared engagement</p><p>2026 External Audit ↔ Meridian Audit Partners</p><p className="mono-meta">SCOPES: REQUESTS · EVIDENCE · COMMENTS · ACTIVITY</p></div>
+          <div className="mt-3 rounded-2xl border border-neutral-200 bg-paper p-3 text-sm"><p className="font-black">Shared engagement</p><p>2026 External Audit ↔ Meridian Audit Partners</p><p className="mono-meta">SCOPES: REQUESTS · EVIDENCE · COMMENTS · ACTIVITY</p></div>
         </div>
         <div className="card-brutal rounded-3xl bg-ink p-6 text-white">
           <p className="mono-meta text-white/60">INVITE ORGANIZATION (SCOPED)</p>

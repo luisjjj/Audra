@@ -23,9 +23,9 @@ export default function Login() {
             <p className="text-2xl font-black">Log in</p>
             <p className="text-sm text-neutral-500">Demo works instantly — no password needed.</p>
             <label className="mt-6 block text-xs font-black uppercase">Email</label>
-            <input value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1 w-full rounded-xl border-[1.5px] border-black px-3 py-2.5 text-sm outline-none focus:shadow-[2px_2px_0_0_#0B0B0B]" />
+            <input value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1 w-full rounded-xl border border-neutral-200 px-3 py-2.5 text-sm outline-none" />
             <label className="mt-4 block text-xs font-black uppercase">Password</label>
-            <input type="password" placeholder="••••••••" className="mt-1 w-full rounded-xl border-[1.5px] border-black px-3 py-2.5 text-sm outline-none" />
+            <input type="password" placeholder="••••••••" className="mt-1 w-full rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm outline-none" />
             <Link href="/overview" className="card-brutal-sm mt-6 block rounded-2xl bg-emerald-600 py-3 text-center font-black text-white">Continue →</Link>
             <div className="mt-3 flex justify-between text-xs font-bold"><span className="cursor-pointer">Forgot password?</span><Link href="/signup" className="underline">Create workspace</Link></div>
           </div>

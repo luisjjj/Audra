@@ -12,7 +12,7 @@ export default function Activity() {
       <p className="mono-meta text-neutral-500">SYSTEM · APPEND-ONLY · HASH-CHAINED</p>
       <h1 className="font-display text-4xl font-black md:text-6xl">AUDIT TRAIL.</h1>
       <p className="text-sm text-neutral-500">Internal integrity mechanism — tamper-evident, not legal immutability. Normal users cannot edit or delete events.</p>
-      <div className="mt-4 flex gap-2">{["All", "Uploads", "Approvals", "Requests"].map((x) => (<button key={x} onClick={() => setFilter(x)} className={`rounded-full border-[1.5px] px-4 py-1 text-xs font-black ${filter === x ? "bg-ink text-white border-black" : "bg-white border-black/20"}`}>{x}</button>))}</div>
+      <div className="mt-4 flex gap-2">{["All", "Uploads", "Approvals", "Requests"].map((x) => (<button key={x} onClick={() => setFilter(x)} className={`rounded-full border px-4 py-1 text-xs font-bold ${filter === x ? "bg-ink text-white border-ink" : "bg-white border-neutral-200 text-neutral-600"}`}>{x}</button>))}</div>
       <div className="mt-6">
         <p className="mono-meta text-neutral-500">TODAY</p>
         <div className="mt-2 space-y-0">

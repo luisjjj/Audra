@@ -24,7 +24,7 @@ export default function Requests() {
       </div>
       <div className="mt-4 flex gap-2 overflow-x-auto">
         {FILTERS.map((x) => (
-          <button key={x} onClick={() => setF(x)} className={`whitespace-nowrap rounded-full border-[1.5px] px-4 py-1.5 text-sm font-black ${f === x ? "border-black bg-ink text-white" : "border-black/20 bg-white"}`}>{x}</button>
+          <button key={x} onClick={() => setF(x)} className={`whitespace-nowrap rounded-full border px-4 py-1.5 text-sm font-bold ${f === x ? "border-ink bg-ink text-white" : "border-neutral-200 bg-white text-neutral-600"}`}>{x}</button>
         ))}
       </div>
       <div className="mt-4 space-y-3">
@@ -47,15 +47,15 @@ export default function Requests() {
             <motion.div initial={{ y: 60 }} animate={{ y: 0 }} exit={{ y: 60 }} transition={{ type: "spring", damping: 26 }} onClick={(e) => e.stopPropagation()} className="card-brutal w-full max-w-lg rounded-3xl bg-white p-6">
               <p className="text-xl font-black">New request</p>
               <div className="mt-4 space-y-3">
-                <input placeholder="Title — e.g. Bank statements Jan–Sep" className="w-full rounded-xl border-[1.5px] border-black px-3 py-2.5 text-sm" />
-                <textarea placeholder="Description" className="w-full rounded-xl border-[1.5px] border-black px-3 py-2.5 text-sm" rows={3} />
+                <input placeholder="Title — e.g. Bank statements Jan–Sep" className="w-full rounded-xl border border-neutral-200 px-3 py-2.5 text-sm" />
+                <textarea placeholder="Description" className="w-full rounded-xl border border-neutral-200 px-3 py-2.5 text-sm" rows={3} />
                 <div className="grid grid-cols-2 gap-3">
-                  <input placeholder="Category" className="rounded-xl border-[1.5px] border-black px-3 py-2.5 text-sm" />
-                  <input type="date" className="rounded-xl border-[1.5px] border-black px-3 py-2.5 text-sm" />
-                  <input placeholder="Assigned to" className="rounded-xl border-[1.5px] border-black px-3 py-2.5 text-sm" />
-                  <input placeholder="Priority" className="rounded-xl border-[1.5px] border-black px-3 py-2.5 text-sm" />
+                  <input placeholder="Category" className="rounded-xl border border-neutral-200 px-3 py-2.5 text-sm" />
+                  <input type="date" className="rounded-xl border border-neutral-200 px-3 py-2.5 text-sm" />
+                  <input placeholder="Assigned to" className="rounded-xl border border-neutral-200 px-3 py-2.5 text-sm" />
+                  <input placeholder="Priority" className="rounded-xl border border-neutral-200 px-3 py-2.5 text-sm" />
                 </div>
-                <input placeholder="Required documents" className="w-full rounded-xl border-[1.5px] border-black px-3 py-2.5 text-sm" />
+                <input placeholder="Required documents" className="w-full rounded-xl border border-neutral-200 px-3 py-2.5 text-sm" />
                 <button onClick={() => setShowNew(false)} className="w-full rounded-2xl bg-emerald-600 py-3 font-black text-white">Create request → trail logged</button>
               </div>
             </motion.div>

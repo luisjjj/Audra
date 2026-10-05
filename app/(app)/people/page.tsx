@@ -8,7 +8,7 @@ export default function People() {
     <div><h2 className="mono-meta mt-6 text-neutral-500">{title}</h2><div className="mt-2 grid gap-3 md:grid-cols-2">
       {list.map((p: any, i: number) => (
         <Reveal key={p.id} delay={i * 0.04}><div className="card-brutal-sm flex items-center justify-between rounded-2xl bg-white p-4">
-          <div className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-full border-[1.5px] border-black bg-emerald-100 font-black">{p.name[0]}</span><div><p className="text-sm font-black">{p.name}</p><p className="text-xs text-neutral-500">{p.role} · {p.org}</p><p className="mono-meta text-neutral-400">{p.email}</p></div></div>
+          <div className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 font-black text-emerald-800">{p.name[0]}</span><div><p className="text-sm font-black">{p.name}</p><p className="text-xs text-neutral-500">{p.role} · {p.org}</p><p className="mono-meta text-neutral-400">{p.email}</p></div></div>
           <button className="text-xs font-black underline">Manage</button>
         </div></Reveal>
       ))}</div></div>

@@ -21,9 +21,9 @@ export default function EngagementDetail({ params }: { params: { id: string } })
         <div className="flex gap-2"><button className="card-brutal-sm rounded-2xl bg-white px-4 py-2 text-sm font-black">Invite</button><button className="card-brutal-sm rounded-2xl bg-ink px-4 py-2 text-sm font-black text-white">Settings</button></div>
       </div>
 
-      <div className="mt-5 flex gap-2 overflow-x-auto border-b-[1.5px] border-black pb-2">
+      <div className="mt-5 flex gap-2 overflow-x-auto border-b border-neutral-200 pb-2">
         {TABS.map((t) => (
-          <button key={t} onClick={() => setTab(t)} className={`whitespace-nowrap rounded-full border-[1.5px] px-4 py-1.5 text-sm font-black transition ${tab === t ? "border-black bg-ink text-white" : "border-black/20 bg-white hover:border-black"}`}>{t}</button>
+          <button key={t} onClick={() => setTab(t)} className={`whitespace-nowrap rounded-full border px-4 py-1.5 text-sm font-bold transition ${tab === t ? "border-ink bg-ink text-white" : "border-neutral-200 bg-white text-neutral-600 hover:border-neutral-400"}`}>{t}</button>
         ))}
       </div>
 
@@ -35,7 +35,7 @@ export default function EngagementDetail({ params }: { params: { id: string } })
             <div className="mt-3"><Bar value={eng.progress} /></div>
             <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
               {[["Open requests","6"],["Awaiting review","4"],["Overdue","2"],["Participants","8"]].map(([k,v])=>(
-                <div key={k} className="rounded-2xl border-[1.5px] border-black bg-paper p-3"><p className="mono-meta text-neutral-500">{k.toUpperCase()}</p><p className="text-2xl font-black">{v}</p></div>
+                <div key={k} className="rounded-2xl border border-neutral-200 bg-paper p-3"><p className="mono-meta text-neutral-500">{k.toUpperCase()}</p><p className="text-2xl font-black">{v}</p></div>
               ))}
             </div>
           </div>
@@ -50,7 +50,7 @@ export default function EngagementDetail({ params }: { params: { id: string } })
 
           {/* WOW: Audit Timeline */}
           <div className="card-brutal rounded-3xl bg-white p-6 md:p-8 lg:col-span-3">
-            <div className="flex items-center justify-between"><p className="font-display text-2xl font-black">Audit Timeline — today</p><span className="mono-meta rounded-full border border-black px-2 py-0.5">CLICK ANY EVENT →</span></div>
+            <div className="flex items-center justify-between"><p className="font-display text-2xl font-black">Audit Timeline — today</p><span className="mono-meta rounded-full bg-black/5 px-2 py-0.5 text-neutral-500">CLICK ANY EVENT →</span></div>
             <div className="mt-6">
               {[
                 { t: "09:12", title: "Sarah uploaded evidence", sub: "Supplier Invoices — Q3 Pack · DOC-91A0", doc: "doc-2" },
@@ -65,8 +65,8 @@ export default function EngagementDetail({ params }: { params: { id: string } })
                   className="group flex w-full gap-4 text-left">
                   <span className="mono-meta w-12 shrink-0 pt-1.5">{e.t}</span>
                   <span className="flex flex-col items-center"><span className={`h-2.5 w-2.5 rounded-full ring-1 ring-black/10 ${i===5?"bg-emerald-500":"bg-white group-hover:bg-emerald-300"} transition`} />{i<5 && <span className="w-px flex-1 bg-neutral-200" style={{ minHeight: 30 }} />}</span>
-                  <span className="rounded-2xl border-[1.5px] border-transparent px-3 pb-4 group-hover:border-black group-hover:bg-paper transition">
-                    <span className="block text-sm font-semibold">{e.title}</span>
+                  <span className="rounded-2xl border border-transparent px-3 pb-4 transition group-hover:border-neutral-200 group-hover:bg-white">
+                    <span className="block text-sm font-semibold">● {e.title}</span>
                     <span className="mono-meta text-neutral-500">{e.sub}</span>
                   </span>
                 </motion.button>
@@ -113,9 +113,9 @@ export default function EngagementDetail({ params }: { params: { id: string } })
                 <div><p className="mono-meta text-neutral-500">{d.code} · CLICK-THROUGH FROM TIMELINE</p>
                 <p className="mt-1 text-xl font-black">{d.title}</p>
                 <p className="text-sm text-neutral-600">Uploaded by {d.by} · Version {d.version} · {d.size}</p>
-                <div className="mt-3 rounded-2xl border-[1.5px] border-black bg-paper p-3 text-sm"><p className="font-black">Version history</p><p className="mono-meta">v2 · {d.by} · 14 Sept 10:42 ✓ current</p><p className="mono-meta">v1 · {d.by} · 12 Sept 09:18</p></div>
+                <div className="mt-3 rounded-2xl border border-neutral-200 bg-paper p-3 text-sm"><p className="font-black">Version history</p><p className="mono-meta">v2 · {d.by} · 14 Sept 10:42 ✓ current</p><p className="mono-meta">v1 · {d.by} · 12 Sept 09:18</p></div>
                 <div className="mt-3 rounded-2xl bg-emerald-50 border border-emerald-600 p-3 text-sm"><p className="font-black text-emerald-800">Michael approved ✓</p><p className="text-xs">Related request REQ-023 · 2 comments · full history in trail</p></div>
-                <div className="mt-4 flex gap-2"><Link href={`/documents/${d.id}`} className="flex-1 rounded-2xl bg-ink py-2.5 text-center text-sm font-black text-white">Open document →</Link><button onClick={() => setSelected(null)} className="rounded-2xl border-[1.5px] border-black px-4 text-sm font-black">Close</button></div></div> ); })()}
+                <div className="mt-4 flex gap-2"><Link href={`/documents/${d.id}`} className="flex-1 rounded-2xl bg-ink py-2.5 text-center text-sm font-black text-white">Open document →</Link><button onClick={() => setSelected(null)} className="rounded-2xl border border-neutral-200 px-4 text-sm font-bold">Close</button></div></div> ); })()}
             </motion.div>
           </motion.div>
         )}

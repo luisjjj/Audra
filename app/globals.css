@@ -6,34 +6,33 @@
 html, body { background: #F4F3EF; color: #0B0B0B; }
 ::selection { background: #0B7A4B; color: white; }
 
-/* Editorial headings — Inter tight, calm */
+/* Editorial + condensed display. Anton for oversized statements, Inter elsewhere. */
 .font-display { letter-spacing: -0.03em; line-height: 1.02; }
+.font-ugly { font-family: Anton, Inter, system-ui, sans-serif; text-transform: uppercase; letter-spacing: -0.01em; line-height: 0.88; }
 
-/* Refined surface: hairline border + soft layered shadow */
-.card-brutal { border: 1px solid rgba(11, 11, 11, 0.09); box-shadow: 0 1px 2px rgba(11, 11, 11, 0.05), 0 12px 32px -16px rgba(11, 11, 11, 0.22); }
-.card-brutal-sm { border: 1px solid rgba(11, 11, 11, 0.09); box-shadow: 0 1px 2px rgba(11, 11, 11, 0.05); }
+/* Sticker surfaces: soft, borderless-feeling, deep soft shadow. No hard offsets. */
+.card-brutal { border: 1px solid rgba(11, 11, 11, 0.06); box-shadow: 0 24px 60px -28px rgba(11, 11, 11, 0.3), 0 2px 8px rgba(11, 11, 11, 0.05); }
+.card-brutal-sm { border: 1px solid rgba(11, 11, 11, 0.06); box-shadow: 0 12px 28px -18px rgba(11, 11, 11, 0.25), 0 1px 3px rgba(11, 11, 11, 0.05); }
 .mono-meta { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; letter-spacing: 0.04em; }
 
-/* Quiet top bar */
+/* Floating pill bar */
 .pill-nav {
-  border: 1px solid rgba(11, 11, 11, 0.09);
-  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(11, 11, 11, 0.07);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
-  box-shadow: 0 1px 2px rgba(11, 11, 11, 0.05);
+  box-shadow: 0 16px 40px -20px rgba(11, 11, 11, 0.3);
 }
 
-/* Small refined badge (replaces rotated stickers) */
+/* Sticker badges — solid, playful, soft shadow */
 .sticker {
   display: inline-block;
+  font-family: Anton, Inter, sans-serif;
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  padding: 5px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(11, 11, 11, 0.12);
-  background: #fff;
-  color: #3f3f3c;
+  padding: 7px 12px;
+  border-radius: 10px;
+  box-shadow: 0 10px 24px -12px rgba(11, 11, 11, 0.5);
 }
 
 /* Horizontal snap carousel */
@@ -46,3 +45,11 @@ html, body { background: #F4F3EF; color: #0B0B0B; }
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: #F4F3EF; }
 ::-webkit-scrollbar-thumb { background: #c9c8c2; border-radius: 8px; border: 2px solid #F4F3EF; }
+
+/* timeline pulse */
+@keyframes pulse-dot { 0%,100% { transform: scale(1); opacity:1;} 50% { transform: scale(1.35); opacity:.7;} }
+.pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+
+/* soft float for hero mock */
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.floaty { animation: floaty 5s ease-in-out infinite; }

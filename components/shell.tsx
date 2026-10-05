@@ -48,7 +48,7 @@ export function Shell({ children, userName = "Henkyaa Japheth", userRole = "Admi
           </AnimatePresence>
         </div>
         <Link href="/overview" className="mt-4 block rounded-xl bg-ink px-4 py-3 text-white">
-          <span className="font-display text-xl font-extrabold tracking-tight">Audra</span>
+          <span className="font-display text-2xl font-black tracking-tight">AUDRA</span>
           <span className="mono-meta mt-1 block text-white/55">Every action. Accounted for.</span>
         </Link>
       </div>

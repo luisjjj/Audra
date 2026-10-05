@@ -36,8 +36,8 @@ export default function Documents() {
           <p className="mono-meta mt-1 text-neutral-500">{progress < 100 ? "UPLOADING → PROCESSING → EXTRACT/REVIEW" : "COMPLETED ✓ · v3 CREATED · TRAIL LOGGED"}</p>
         </motion.div>
       )}
-      <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search documents..." className="mt-4 w-full rounded-2xl border-[1.5px] border-black bg-white px-4 py-2.5 text-sm outline-none" />
-      <div className="mt-3 flex gap-2 overflow-x-auto pb-1">{FILTERS.map((x) => (<button key={x} onClick={() => setF(x)} className={`whitespace-nowrap rounded-full border-[1.5px] px-4 py-1.5 text-sm font-black ${f === x ? "border-black bg-ink text-white" : "border-black/20 bg-white"}`}>{x}</button>))}</div>
+      <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search documents..." className="mt-4 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-2.5 text-sm outline-none" />
+      <div className="mt-3 flex gap-2 overflow-x-auto pb-1">{FILTERS.map((x) => (<button key={x} onClick={() => setF(x)} className={`whitespace-nowrap rounded-full border px-4 py-1.5 text-sm font-bold ${f === x ? "border-ink bg-ink text-white" : "border-neutral-200 bg-white text-neutral-600"}`}>{x}</button>))}</div>
       <div className="mt-4 grid gap-3 md:grid-cols-2">
         {list.map((d, i) => (
           <Reveal key={d.id} delay={i * 0.04}>
