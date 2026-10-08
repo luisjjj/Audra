@@ -104,7 +104,7 @@ function DemoDetail({ eng }: { eng: (typeof DEMO_ENGAGEMENTS)[number] }) {
                 { t: "09:12", title: "Sarah uploaded evidence", sub: "Supplier Invoices — Q3 Pack · DOC-91A0", doc: "doc-2" },
                 { t: "10:04", title: "Michael reviewed", sub: "Q2 Bank Statement.pdf · viewed + annotated", doc: "doc-1" },
                 { t: "10:32", title: "Changes requested", sub: "Missing page 4 · reason recorded", doc: "doc-1" },
-                { t: "11:17", title: "Sarah uploaded v2", sub: "Bank Statement — September 2026 · v2 · hash 9f2c…a1", doc: "doc-1" },
+                { t: "11:17", title: "Sarah uploaded v2", sub: "Bank Statement — September 2026 · v2 · complete", doc: "doc-1" },
                 { t: "11:43", title: "Michael approved", sub: "Version 2 · prev → new recorded", doc: "doc-1" },
                 { t: "12:01", title: "Engagement progress 74% → 78%", sub: "REQ-025 completed · auto-recalculated", doc: null },
               ].map((e, i) => (

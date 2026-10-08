@@ -30,7 +30,7 @@ function DemoOverview() {
         <div className="card-brutal mt-6 grid gap-6 rounded-3xl bg-ink p-6 text-white md:grid-cols-[1fr_auto] md:p-8">
           <div>
             <p className="mono-meta text-white/60">2026 AUDIT · {eng.org.toUpperCase()}</p>
-            <p className="font-display mt-2 text-4xl font-black md:text-5xl">{eng.progress}%<span className="ml-3 align-middle text-sm font-bold tracking-widest text-white/60">ENGAGEMENT COMPLETE</span></p>
+            <p className="font-display mt-2 text-4xl font-black md:text-5xl">{eng.progress}%</p><p className="mt-1 text-xs font-bold tracking-widest text-white/60">ENGAGEMENT COMPLETE</p>
             <p className="mt-3 text-sm text-white/80">{eng.done} / {eng.total} requests completed · 5 items need attention</p>
             <div className="mt-4 h-3 overflow-hidden rounded-full border border-white/30 bg-white/10">
               <div className="h-full rounded-full bg-emerald-400" style={{ width: `${eng.progress}%` }} />
@@ -125,7 +125,7 @@ export default async function Overview() {
           <div className="card-brutal mt-6 grid gap-6 rounded-3xl bg-ink p-6 text-white md:grid-cols-[1fr_auto] md:p-8">
             <div>
               <p className="mono-meta text-white/60">{eng.title.toUpperCase()} · {orgName.toUpperCase()}</p>
-              <p className="font-display mt-2 text-4xl font-black md:text-5xl">{eng.progress}%<span className="ml-3 align-middle text-sm font-bold tracking-widest text-white/60">ENGAGEMENT COMPLETE</span></p>
+              <p className="font-display mt-2 text-4xl font-black md:text-5xl">{eng.progress}%</p><p className="mt-1 text-xs font-bold tracking-widest text-white/60">ENGAGEMENT COMPLETE</p>
               <p className="mt-3 text-sm text-white/80">{eng.done} / {eng.total} requests completed</p>
               <div className="mt-4 h-3 overflow-hidden rounded-full border border-white/30 bg-white/10">
                 <div className="h-full rounded-full bg-emerald-400" style={{ width: `${eng.progress}%` }} />

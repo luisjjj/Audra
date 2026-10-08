@@ -50,8 +50,8 @@ b, strong { font-weight: 600; }
   box-shadow: 0 10px 24px -12px rgba(11, 11, 11, 0.5);
 }
 
-/* Horizontal snap carousel */
-.snap-row { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+/* Horizontal snap carousel — proximity (never force-snaps on load) */
+.snap-row { scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
 .snap-row > * { scroll-snap-align: start; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, ShieldCheck, FileCheck, Users } from "lucide-react";
 
@@ -15,6 +15,13 @@ export default function Landing() {
   const clarityRef = useRef<HTMLDivElement>(null);
   const scrollBy = (el: HTMLDivElement | null, dir: number) =>
     el?.scrollBy({ left: dir * 340, behavior: "smooth" });
+
+  // Guard against browsers shifting scroll containers during load (fonts,
+  // snap restoration): carousels must start flush with their inset.
+  useEffect(() => {
+    howRef.current?.scrollTo({ left: 0 });
+    clarityRef.current?.scrollTo({ left: 0 });
+  }, []);
 
   return (
     <div className="min-h-dvh">
@@ -65,7 +72,7 @@ export default function Landing() {
             </Link>
           </div>
           <p className="mt-4 text-sm text-neutral-500">
-            or <Link href="/overview" className="font-semibold text-ink underline underline-offset-4">explore a sample workspace</Link> · <Link href="/engagements/eng-2026" className="font-semibold text-ink underline underline-offset-4">see the audit timeline</Link>
+            or <Link href="/overview" className="whitespace-nowrap font-semibold text-ink underline underline-offset-4">explore a sample workspace</Link> · <Link href="/engagements/eng-2026" className="whitespace-nowrap font-semibold text-ink underline underline-offset-4">see the audit timeline</Link>
           </p>
           <p className="mono-meta mt-4 text-neutral-500">
             Request → Submit → Review → Approve → Record → Audit Trail
@@ -108,7 +115,7 @@ export default function Landing() {
             <br />
             works on AUDRA
           </motion.h2>
-          <div ref={howRef} className="snap-row no-scrollbar -mx-4 mt-6 flex gap-4 overflow-x-auto px-4 pb-2 md:mx-0 md:px-0">
+          <div ref={howRef} className="snap-row no-scrollbar -mx-4 mt-6 flex scroll-pl-4 gap-4 overflow-x-auto px-4 pb-2 md:mx-0 md:px-0">
             <HowCard sticker="STEP 01" stickerClass="bg-ink text-white -rotate-6" title="Request" body="Ask Finance for exactly what you need. Owner, due date, required docs — logged to the trail." footer="Scoped requests" caption="Assigned, due, traceable" dark={false} />
             <HowCard sticker="STEP 02" stickerClass="bg-lime text-ink rotate-3" title="Submit & review" body="Evidence lands versioned. Reviewers comment, request changes — never a silent overwrite." footer="v1 → v2 → approved" caption="Versions, comments, reviews" dark={false} solid />
             <HowCard sticker="STEP 03" stickerClass="bg-white text-ink -rotate-3" title="Approve & trail" body="Approvals close the loop. Who did what, when, and what changed — all recorded." footer="Nothing lost" caption="Approvals + full history" dark />
@@ -121,7 +128,7 @@ export default function Landing() {
           <motion.h2 {...rise(0)} className="font-ugly max-w-[700px] text-4xl md:text-6xl">
             Audit clarity
           </motion.h2>
-          <div ref={clarityRef} className="snap-row no-scrollbar -mx-4 mt-6 flex gap-4 overflow-x-auto px-4 pb-2 md:mx-0 md:px-0">
+          <div ref={clarityRef} className="snap-row no-scrollbar -mx-4 mt-6 flex scroll-pl-4 gap-4 overflow-x-auto px-4 pb-2 md:mx-0 md:px-0">
             <div className="w-[300px] shrink-0 md:w-[340px]">
               <div className="card-brutal rounded-[24px] bg-white p-6 transition hover:-translate-y-1">
                 <FileCheck size={40} strokeWidth={1.25} />

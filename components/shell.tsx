@@ -137,7 +137,7 @@ export function Shell({ children, userName = "Henkyaa Japheth", userRole = "Admi
         <>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }} onClick={() => setOpen(false)} aria-hidden className="fixed inset-0 z-40 bg-black/30 lg:hidden" />
           <motion.div initial={{ x: -280 }} animate={{ x: 0 }} exit={{ x: -280 }} transition={{ duration: 0.22 }} role="dialog" aria-modal="true" aria-label="Menu" className="fixed inset-y-0 left-0 z-50 w-[272px] overflow-y-auto border-r border-neutral-200 bg-paper lg:hidden">
-          <button onClick={() => setOpen(false)} aria-label="Close menu" className="absolute right-3 top-3 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-neutral-300"><X size={16} /></button>
+          <button onClick={() => setOpen(false)} aria-label="Close menu" className="absolute right-3 top-3 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-neutral-300 bg-paper"><X size={16} /></button>
           {sidebar}
         </motion.div>
         </>
