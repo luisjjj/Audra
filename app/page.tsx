@@ -34,11 +34,11 @@ export default function Landing() {
               Log in
             </Link>
             <Link
-              href="/overview"
-              className="rounded-full bg-ink px-4 py-2 text-[13px] font-bold text-white transition hover:-translate-y-[1px]"
+              href="/signup"
+              className="rounded-full bg-emerald-600 px-5 py-2.5 text-[13px] font-bold text-white transition hover:-translate-y-[1px]"
               style={{ boxShadow: "0 0 0 2px #C8F04A, 0 8px 20px rgba(11,122,75,.35)" }}
             >
-              Open workspace
+              Create workspace
             </Link>
           </div>
         </div>
@@ -60,13 +60,13 @@ export default function Landing() {
             Everything that happened, stays accounted for.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            <Link href="/overview" className="inline-flex min-h-[44px] items-center gap-2 rounded-2xl bg-emerald-600 px-6 py-3 font-bold text-white shadow-[0_16px_32px_-16px_rgba(11,122,75,0.7)] transition hover:-translate-y-[2px]">
-              Open workspace <ArrowRight size={18} />
-            </Link>
-            <Link href="/engagements/eng-2026" className="inline-flex min-h-[44px] items-center gap-2 rounded-2xl bg-white px-6 py-3 font-bold shadow-[0_16px_32px_-20px_rgba(11,11,11,0.4)] transition hover:-translate-y-[2px]">
-              See audit timeline
+            <Link href="/signup" className="inline-flex min-h-[44px] items-center gap-2 rounded-2xl bg-emerald-600 px-8 py-3.5 text-[15px] font-bold text-white shadow-[0_16px_32px_-16px_rgba(11,122,75,0.7)] transition hover:-translate-y-[2px]">
+              Create your workspace <ArrowRight size={18} />
             </Link>
           </div>
+          <p className="mt-4 text-sm text-neutral-500">
+            or <Link href="/overview" className="font-semibold text-ink underline underline-offset-4">explore the live demo</Link> · <Link href="/engagements/eng-2026" className="font-semibold text-ink underline underline-offset-4">see the audit timeline</Link>
+          </p>
           <p className="mono-meta mt-4 text-neutral-500">
             Request → Submit → Review → Approve → Record → Audit Trail
           </p>

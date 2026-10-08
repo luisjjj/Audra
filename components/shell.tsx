@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, Briefcase, Inbox, Files, Landmark, Users, Building2, Activity, Settings, Bell, Search, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -23,26 +23,54 @@ const NAV = [
   ]},
 ];
 
-export function Shell({ children, userName = "Henkyaa Japheth", userRole = "Admin", org = "Apex Manufacturing Ltd." }: any) {
+export function Shell({ children, userName = "Henkyaa Japheth", userRole = "Admin", orgs = [{ id: "org-apex", name: "Apex Manufacturing Ltd." }], activeOrgId = "org-apex", activeOrgName }: {
+  children: React.ReactNode;
+  userName?: string;
+  userRole?: string;
+  orgs?: { id: string; name: string }[];
+  activeOrgId?: string | null;
+  activeOrgName?: string;
+}) {
   const path = usePathname();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [wsOpen, setWsOpen] = useState(false);
+  const [switching, setSwitching] = useState(false);
+  const activeName = activeOrgName ?? orgs.find((o) => o.id === activeOrgId)?.name ?? orgs[0]?.name ?? "Workspace";
+
+  async function chooseOrg(id: string) {
+    if (id === activeOrgId || switching) { setWsOpen(false); return; }
+    setSwitching(true);
+    try {
+      const { switchWorkspace } = await import("@/actions/audra");
+      await switchWorkspace(id);
+      router.refresh();
+    } catch {
+      // stays on current workspace
+    } finally {
+      setSwitching(false);
+      setWsOpen(false);
+    }
+  }
 
   const sidebar = (
     <div className="flex h-full flex-col">
       <div className="p-4">
         <div className="relative">
           <button onClick={() => setWsOpen(!wsOpen)} aria-expanded={wsOpen} aria-haspopup="listbox" className="card-brutal-sm flex w-full items-center justify-between gap-2 rounded-xl bg-white px-3 py-2.5 text-left transition hover:bg-neutral-50">
-            <span className="min-w-0"><span className="block text-[11px] font-medium uppercase tracking-wider text-neutral-500">Workspace</span><span className="block truncate text-sm font-semibold">{org}</span></span>
-            <span className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />Live</span>
+            <span className="min-w-0"><span className="block text-[11px] font-medium uppercase tracking-wider text-neutral-500">Workspace</span><span className="block truncate text-sm font-semibold">{activeName}</span></span>
+            <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />Live</span>
           </button>
           <AnimatePresence>
             {wsOpen && (
               <motion.div initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.18 }} className="card-brutal absolute z-50 mt-2 w-full rounded-xl bg-white p-1.5">
-                {[org, "Meridian Audit Partners"].map((o) => (
-                  <button key={o} onClick={() => setWsOpen(false)} className="w-full rounded-lg px-3 py-2 text-left text-sm font-medium hover:bg-neutral-100">{o}</button>
+                {orgs.map((o) => (
+                  <button key={o.id} onClick={() => chooseOrg(o.id)} className="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-left text-sm font-medium hover:bg-neutral-100">
+                    <span className="truncate">{o.name}</span>
+                    {o.id === activeOrgId && <span className="mono-meta shrink-0 text-emerald-700">ACTIVE</span>}
+                  </button>
                 ))}
-                <Link href="/settings" className="block rounded-lg px-3 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">+ Create workspace</Link>
+                <Link href="/signup" className="block rounded-lg px-3 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">+ Create workspace</Link>
               </motion.div>
             )}
           </AnimatePresence>
@@ -73,7 +101,7 @@ export function Shell({ children, userName = "Henkyaa Japheth", userRole = "Admi
       <div className="p-4">
         <div className="card-brutal-sm rounded-xl bg-white p-3">
           <p className="text-sm font-semibold">{userName}</p>
-          <p className="mono-meta mt-0.5 text-neutral-500">{userRole} · {org}</p>
+          <p className="mono-meta mt-0.5 truncate text-neutral-500">{userRole} · {activeName}</p>
         </div>
       </div>
     </div>

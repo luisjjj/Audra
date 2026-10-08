@@ -1,10 +1,46 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { PageWrap } from "@/components/ui";
 import { DEMO_DOCS } from "@/lib/demo";
 import { Download, MessageSquare, Share2, History } from "lucide-react";
+import { getActiveOrgContext, getDocById } from "@/lib/workspaces";
 
-export default function DocDetail({ params }: { params: { id: string } }) {
-  const d = DEMO_DOCS.find((x) => x.id === params.id) ?? DEMO_DOCS[0];
+export default async function DocDetail({ params }: { params: { id: string } }) {
+  const ctx = await getActiveOrgContext();
+  const real = !ctx.isDemo && !!ctx.activeOrgId;
+
+  let view: {
+    code: string; title: string; by: string; date: string; version: number;
+    reviewed: boolean; approved: boolean; category: string; engagement: string; size: string;
+    versions: { version: number; fileName: string; by: string; date: string; note: string | null }[];
+    comments: { id: string; author: string; body: string; date: string }[];
+  } | null = null;
+
+  if (!real) {
+    const d = DEMO_DOCS.find((x) => x.id === params.id) ?? DEMO_DOCS[0];
+    view = {
+      ...d,
+      versions: Array.from({ length: d.version }, (_, k) => d.version - k).map((v) => ({
+        version: v,
+        fileName: `${d.code.toLowerCase()}-v${v}.pdf`,
+        by: d.by,
+        date: v === d.version ? d.date : "Earlier version",
+        note: null,
+      })),
+      comments: d.id === "doc-1" ? [{
+        id: "c-1",
+        author: "Michael Adeyemi",
+        body: "Can we get the complete statement? Page 4 appears to be missing.",
+        date: d.date,
+      }] : [],
+    };
+  } else {
+    const data = await getDocById(ctx.activeOrgId!, params.id);
+    if (!data) notFound();
+    view = { ...data.doc, versions: data.versions, comments: data.comments };
+  }
+
+  const d = view!;
   return (
     <PageWrap>
       <Link href="/documents" className="mono-meta underline">← EVIDENCE LIBRARY</Link>
@@ -18,10 +54,15 @@ export default function DocDetail({ params }: { params: { id: string } }) {
             <p className="mt-2 text-sm font-bold">{d.title} · {d.size}</p>
           </div>
           <div className="mt-4 rounded-2xl bg-neutral-50 border p-4 text-sm">
-            <p className="font-black flex items-center gap-2"><MessageSquare size={15} /> Michael Adeyemi</p>
-            <p className="mt-1 text-neutral-700">Can we get the complete statement? Page 4 appears to be missing.</p>
-            <button className="mt-2 text-xs font-black underline">Reply</button>
-            <div className="ml-4 mt-3 border-l-2 border-neutral-200 pl-3"><p className="text-xs font-black">Sarah Okafor <span className="mono-meta font-normal">· v2 uploaded with page 4</span></p></div>
+            {d.comments.length === 0 ? (
+              <p className="text-neutral-500">No comments yet — reviews and questions will appear here.</p>
+            ) : d.comments.map((c) => (
+              <div key={c.id} className="mb-3 last:mb-0">
+                <p className="font-black flex items-center gap-2"><MessageSquare size={15} /> {c.author}</p>
+                <p className="mt-1 text-neutral-700">{c.body}</p>
+                <p className="mono-meta mt-1 text-neutral-400">{c.date.toUpperCase()}</p>
+              </div>
+            ))}
           </div>
         </div>
         <div className="space-y-4">
@@ -29,7 +70,7 @@ export default function DocDetail({ params }: { params: { id: string } }) {
             <p className="mono-meta text-neutral-500">METADATA</p>
             <div className="mt-2 space-y-1.5 text-sm">
               <p><b>Uploaded by</b> {d.by}</p><p><b>Uploaded</b> {d.date}</p>
-              <p><b>Version</b> {d.version}</p><p><b>Status</b> {d.approved ? "Approved ✓" : "Under review"}</p>
+              <p><b>Version</b> {d.version}</p><p><b>Status</b> {d.approved ? "Approved ✓" : d.reviewed ? "Under review" : "Not reviewed"}</p>
               <p className="mono-meta">SHA 9f2c…a1 · PREV 41bd…07 · CHAINED</p>
             </div>
             <div className="mt-4 grid grid-cols-2 gap-2 text-sm font-black">
@@ -42,8 +83,11 @@ export default function DocDetail({ params }: { params: { id: string } }) {
           <div className="card-brutal rounded-3xl bg-ink p-5 text-white">
             <p className="mono-meta text-white/60 flex items-center gap-2"><History size={12} /> VERSION HISTORY</p>
             <div className="mt-3 space-y-2 text-sm">
-              {Array.from({ length: d.version }, (_, k) => d.version - k).map((v) => (
-                <div key={v} className={`rounded-xl p-3 ${v === d.version ? "bg-white/10" : "bg-white/5"}`}><p className={v === d.version ? "font-black" : "font-bold"}>v{v}{v === d.version ? " · current ✓" : ""}</p><p className="mono-meta text-white/60">{d.by} · {v === d.version ? d.date : "earlier version"}</p></div>
+              {d.versions.map((v) => (
+                <div key={v.version} className={`rounded-xl p-3 ${v.version === d.version ? "bg-white/10" : "bg-white/5"}`}>
+                  <p className={v.version === d.version ? "font-black" : "font-bold"}>v{v.version}{v.version === d.version ? " · current ✓" : ""}</p>
+                  <p className="mono-meta text-white/60">{v.by} · {v.date}{v.note ? ` · ${v.note}` : ""}</p>
+                </div>
               ))}
             </div>
             <p className="mono-meta mt-3 text-white/50">NEVER SILENTLY OVERWRITTEN.</p>

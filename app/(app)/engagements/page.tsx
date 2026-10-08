@@ -1,29 +1,49 @@
 import Link from "next/link";
-import { PageWrap, Reveal } from "@/components/ui";
+import { PageWrap, Reveal, EmptyState } from "@/components/ui";
 import { DEMO_ENGAGEMENTS } from "@/lib/demo";
 import { Bar } from "@/components/charts";
+import { NewEngagementButton } from "@/components/new-engagement-button";
+import { getActiveOrgContext, getOrgEngagements } from "@/lib/workspaces";
 
-export default function Engagements() {
+export default async function Engagements() {
+  const ctx = await getActiveOrgContext();
+  const real = !ctx.isDemo && !!ctx.activeOrgId;
+  const items = real
+    ? await getOrgEngagements(ctx.activeOrgId!, ctx.activeOrg!.name)
+    : DEMO_ENGAGEMENTS;
+
   return (
     <PageWrap>
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div><p className="mono-meta text-neutral-500">WORK · ENGAGEMENTS</p><h1 className="font-display text-4xl font-black md:text-5xl">Engagements</h1></div>
-        <Link href="/settings" className="card-brutal-sm min-h-[44px] inline-flex items-center rounded-2xl bg-ink px-5 py-2.5 text-sm font-black text-white">+ New engagement</Link>
+        {real
+          ? <NewEngagementButton />
+          : <Link href="/settings" className="card-brutal-sm inline-flex min-h-[44px] items-center rounded-2xl bg-ink px-5 py-2.5 text-sm font-black text-white">+ New engagement</Link>}
       </div>
-      <div className="mt-6 grid gap-4 md:grid-cols-2">
-        {DEMO_ENGAGEMENTS.map((e, i) => (
-          <Reveal key={e.id} delay={i * 0.05}>
-            <div className={`card-brutal rounded-3xl p-6 ${i === 0 ? "bg-white" : "bg-white/80"}`}>
-              <div className="flex items-start justify-between gap-2">
-                <div className="min-w-0"><p className="mono-meta text-neutral-500">{e.id.toUpperCase()} · {e.status.toUpperCase()}</p><p className="mt-1 text-xl font-black">{e.title}</p><p className="text-xs text-neutral-500">{e.org} · {e.firm}</p></div>
-                <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-bold text-emerald-800">{e.progress}%</span>
+      {items.length === 0 ? (
+        <div className="mt-6">
+          <EmptyState
+            title="No engagements yet"
+            body="Create your first audit engagement and bring your team in."
+            action={<NewEngagementButton label="Create engagement" />}
+          />
+        </div>
+      ) : (
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {items.map((e, i) => (
+            <Reveal key={e.id} delay={i * 0.05}>
+              <div className={`card-brutal rounded-3xl p-6 ${i === 0 ? "bg-white" : "bg-white/80"}`}>
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0"><p className="mono-meta text-neutral-500">{e.id.toUpperCase()} · {e.status.toUpperCase()}</p><p className="mt-1 text-xl font-black">{e.title}</p><p className="text-xs text-neutral-500">{e.org} · {e.firm}</p></div>
+                  <span className="shrink-0 rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-bold text-emerald-800">{e.progress}%</span>
+                </div>
+                <div className="mt-4"><Bar value={e.progress} /><p className="mono-meta mt-2 text-neutral-500">{e.done} / {e.total} requests complete · Due {e.due}</p></div>
+                <Link href={`/engagements/${e.id}`} className="card-brutal-sm mt-4 flex min-h-[44px] items-center justify-center rounded-2xl bg-ink py-2.5 text-center text-sm font-black text-white transition">Open Engagement →</Link>
               </div>
-              <div className="mt-4"><Bar value={e.progress} /><p className="mono-meta mt-2 text-neutral-500">{e.done} / {e.total} requests complete · Due {e.due}</p></div>
-              <Link href={`/engagements/${e.id}`} className="card-brutal-sm mt-4 flex min-h-[44px] items-center justify-center rounded-2xl bg-ink py-2.5 text-center text-sm font-black text-white transition">Open Engagement →</Link>
-            </div>
-          </Reveal>
-        ))}
-      </div>
+            </Reveal>
+          ))}
+        </div>
+      )}
     </PageWrap>
   );
 }

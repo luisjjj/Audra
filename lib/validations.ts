@@ -8,6 +8,7 @@ export const requestSchema = z.object({
   assignedTo: z.string().optional(),
   priority: z.enum(["low","medium","high","urgent"]).default("medium"),
   requiredDocs: z.string().optional(),
+  engagementId: z.string().min(1).optional(),
 });
 
 export const engagementSchema = z.object({
@@ -38,4 +39,19 @@ export const filingSchema = z.object({
   status: z.string().default("upcoming"),
   dueDate: z.string().optional(),
   owner: z.string().optional(),
+});
+
+export const workspaceSchema = z.object({
+  name: z.string().min(2).max(200),
+  industry: z.string().max(100).optional(),
+  size: z.string().max(50).optional(),
+});
+
+export const signupSchema = z.object({
+  name: z.string().min(2).max(100),
+  email: z.string().email().max(200),
+  password: z.string().min(8).max(200),
+  company: z.string().min(2).max(200),
+  industry: z.string().max(100).optional(),
+  size: z.string().max(50).optional(),
 });

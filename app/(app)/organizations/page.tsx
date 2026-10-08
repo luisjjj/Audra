@@ -1,18 +1,39 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PageWrap, Reveal } from "@/components/ui";
+import { HeaderSkeleton, SplitSkeleton } from "@/components/skeletons";
+import { getOrgsView } from "@/actions/views";
+
+type View = Awaited<ReturnType<typeof getOrgsView>>;
 
 export default function Orgs() {
+  const [view, setView] = useState<View | null>(null);
   const [sent, setSent] = useState(false);
+
+  useEffect(() => { getOrgsView().then(setView); }, []);
+
+  if (!view) {
+    return (
+      <PageWrap>
+        <HeaderSkeleton action={false} />
+        <SplitSkeleton />
+      </PageWrap>
+    );
+  }
+
+  const active = view.orgs.find((o) => o.id === view.activeOrgId) ?? view.orgs[0];
+
   return (
     <PageWrap>
       <p className="mono-meta text-neutral-500">COLLABORATE · CROSS-COMPANY</p>
       <h1 className="font-display text-4xl font-black md:text-5xl">Organizations</h1>
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
         <div className="card-brutal rounded-3xl bg-white p-6">
-          <p className="mono-meta">YOUR WORKSPACE</p><p className="text-xl font-black">Apex Manufacturing Ltd.</p>
-          <p className="text-sm text-neutral-500">Owner · 5 members · 5 engagements</p>
-          <div className="mt-3 rounded-2xl border border-neutral-200 bg-paper p-3 text-sm"><p className="font-black">Shared engagement</p><p>2026 External Audit ↔ Meridian Audit Partners</p><p className="mono-meta">SCOPES: REQUESTS · EVIDENCE · COMMENTS · ACTIVITY</p></div>
+          <p className="mono-meta">YOUR WORKSPACE</p><p className="text-xl font-black">{active?.name ?? "Workspace"}</p>
+          <p className="text-sm text-neutral-500">{view.isDemo ? "Owner · 5 members · 5 engagements" : "Your workspace · scoped sharing per engagement"}</p>
+          {view.isDemo && (
+            <div className="mt-3 rounded-2xl border border-neutral-200 bg-paper p-3 text-sm"><p className="font-black">Shared engagement</p><p>2026 External Audit ↔ Meridian Audit Partners</p><p className="mono-meta">SCOPES: REQUESTS · EVIDENCE · COMMENTS · ACTIVITY</p></div>
+          )}
         </div>
         <div className="card-brutal rounded-3xl bg-ink p-6 text-white">
           <p className="mono-meta text-white/60">INVITE ORGANIZATION (SCOPED)</p>
@@ -27,7 +48,16 @@ export default function Orgs() {
           </div>
         </div>
       </div>
-      <Reveal><div className="card-brutal mt-4 rounded-3xl bg-white p-6"><p className="font-black">Meridian Audit Partners</p><p className="text-sm text-neutral-500">External · 2 members · scopes: requests, evidence, comments, activity</p></div></Reveal>
+      {view.isDemo ? (
+        <Reveal><div className="card-brutal mt-4 rounded-3xl bg-white p-6"><p className="font-black">Meridian Audit Partners</p><p className="text-sm text-neutral-500">External · 2 members · scopes: requests, evidence, comments, activity</p></div></Reveal>
+      ) : view.orgs.map((o, i) => (
+        <Reveal key={o.id} delay={i * 0.05}>
+          <div className="card-brutal mt-4 rounded-3xl bg-white p-6">
+            <p className="font-black">{o.name}</p>
+            <p className="text-sm text-neutral-500">{o.id === view.activeOrgId ? "Active workspace" : "Your workspace"} · scopes: requests, evidence, comments, activity</p>
+          </div>
+        </Reveal>
+      ))}
     </PageWrap>
   );
 }
