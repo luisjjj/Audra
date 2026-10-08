@@ -15,8 +15,9 @@ body { overflow-x: clip; }
 .font-extrabold { font-weight: 600; }
 .font-bold { font-weight: 500; }
 b, strong { font-weight: 600; }
-.font-display { letter-spacing: -0.03em; line-height: 1.02; font-weight: 400; }
-.font-ugly { font-family: Anton, Inter, system-ui, sans-serif; text-transform: uppercase; letter-spacing: -0.01em; line-height: 0.88; }
+/* Display type — Inter semibold, tight. One family across the app. */
+.font-display { letter-spacing: -0.03em; line-height: 1.05; font-weight: 600; }
+.font-ugly { font-family: Inter, system-ui, sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.95; }
 
 /* Sticker surfaces: soft, borderless-feeling, deep soft shadow. No hard offsets. */
 .card-brutal { border: 1px solid rgba(11, 11, 11, 0.06); box-shadow: 0 24px 60px -28px rgba(11, 11, 11, 0.3), 0 2px 8px rgba(11, 11, 11, 0.05); }
@@ -31,12 +32,13 @@ b, strong { font-weight: 600; }
   box-shadow: 0 16px 40px -20px rgba(11, 11, 11, 0.3);
 }
 
-/* Sticker badges — solid, playful, soft shadow */
+/* Sticker badges — small Inter caps, soft shadow */
 .sticker {
   display: inline-block;
-  font-family: Anton, Inter, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
+  font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 7px 12px;
   border-radius: 10px;
