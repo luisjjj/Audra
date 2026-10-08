@@ -15,6 +15,7 @@ declare module "lucide-react" {
   export const Search: typeof C;
   export const Menu: typeof C;
   export const X: typeof C;
+  export const LogOut: typeof C;
   export const ArrowRight: typeof C;
   export const ArrowUpRight: typeof C;
   export const ShieldCheck: typeof C;

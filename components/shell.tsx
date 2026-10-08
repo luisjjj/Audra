@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Briefcase, Inbox, Files, Landmark, Users, Building2, Activity, Settings, Bell, Search, Menu, X } from "lucide-react";
+import { LayoutDashboard, Briefcase, Inbox, Files, Landmark, Users, Building2, Activity, Settings, Bell, Search, Menu, X, LogOut } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -99,11 +99,26 @@ export function Shell({ children, userName = "Henkyaa Japheth", userRole = "Admi
           </div>
         ))}
       </nav>
-      <div className="p-4">
+      <div className="space-y-2 p-4">
         <div className="card-brutal-sm rounded-xl bg-white p-3">
           <p className="text-sm font-semibold">{userName}</p>
           <p className="mono-meta mt-0.5 truncate text-neutral-500">{roleLabel} · {activeName}</p>
         </div>
+        <button
+          onClick={async () => {
+            try {
+              const { authClient } = await import("@/lib/auth-client");
+              await authClient.signOut();
+            } finally {
+              router.push("/login");
+              router.refresh();
+            }
+          }}
+          className="flex min-h-[44px] w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-neutral-500 transition hover:bg-white hover:text-black"
+        >
+          <LogOut size={17} strokeWidth={1.75} />
+          Log out
+        </button>
       </div>
     </div>
   );
