@@ -64,7 +64,7 @@ export default function Overview() {
             {DEMO_ACTIVITY.slice(0,5).map((e)=>(
               <div key={e.id} className="flex gap-3 border-b border-dashed border-neutral-200 py-3 last:border-0">
                 <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-600" />
-                <div><p className="mono-meta text-neutral-400">{e.ago} · {e.time}</p><p className="text-sm"><b>{e.actor}</b> <span className="rounded bg-neutral-100 px-1 font-mono text-[11px] font-bold">{e.action}</span><br/>{e.target}</p></div>
+                <div><p className="mono-meta text-neutral-400">{e.ago} · {e.time}</p><p className="text-sm"><b>{e.actor}</b> <span className="mono-meta rounded bg-neutral-100 px-1 font-bold">{e.action}</span><br/>{e.target}</p></div>
               </div>
             ))}
             <Link href="/activity" className="mt-2 inline-flex items-center gap-1 text-sm font-black">Full trail <ArrowRight size={14}/></Link>
