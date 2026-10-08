@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, Briefcase, Inbox, Files, Landmark, Users, Building2, Activity, Settings, Bell, Search, Menu, X, LogOut } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV = [
@@ -39,6 +39,13 @@ export function Shell({ children, userName = "Henkyaa Japheth", userRole = "Admi
   const activeName = activeOrgName ?? orgs.find((o) => o.id === activeOrgId)?.name ?? orgs[0]?.name ?? "Workspace";
   const roleLabel = userRole.charAt(0).toUpperCase() + userRole.slice(1);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   async function chooseOrg(id: string) {
     if (id === activeOrgId || switching) { setWsOpen(false); return; }
     setSwitching(true);
@@ -66,12 +73,12 @@ export function Shell({ children, userName = "Henkyaa Japheth", userRole = "Admi
             {wsOpen && (
               <motion.div initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.18 }} className="card-brutal absolute z-50 mt-2 w-full rounded-xl bg-white p-1.5">
                 {orgs.map((o) => (
-                  <button key={o.id} onClick={() => chooseOrg(o.id)} className="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-left text-sm font-medium hover:bg-neutral-100">
+                  <button key={o.id} onClick={() => chooseOrg(o.id)} className="flex min-h-[44px] w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-left text-sm font-medium hover:bg-neutral-100">
                     <span className="truncate">{o.name}</span>
                     {o.id === activeOrgId && <span className="mono-meta shrink-0 text-emerald-700">ACTIVE</span>}
                   </button>
                 ))}
-                <Link href="/signup" className="block rounded-lg px-3 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">+ Create workspace</Link>
+                <Link href="/signup" onClick={() => setWsOpen(false)} className="flex min-h-[44px] items-center rounded-lg px-3 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">+ Create workspace</Link>
               </motion.div>
             )}
           </AnimatePresence>
@@ -124,13 +131,16 @@ export function Shell({ children, userName = "Henkyaa Japheth", userRole = "Admi
   );
 
   return (
-    <div className="min-h-screen lg:flex">
+    <div className="min-h-dvh lg:flex">
       <aside className="hidden w-[272px] shrink-0 border-r border-neutral-200 bg-paper lg:block">{sidebar}</aside>
       <AnimatePresence>{open && (
-        <motion.div initial={{ x: -280 }} animate={{ x: 0 }} exit={{ x: -280 }} transition={{ duration: 0.22 }} className="fixed inset-y-0 left-0 z-50 w-[272px] border-r border-neutral-200 bg-paper lg:hidden">
+        <>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }} onClick={() => setOpen(false)} aria-hidden className="fixed inset-0 z-40 bg-black/30 lg:hidden" />
+          <motion.div initial={{ x: -280 }} animate={{ x: 0 }} exit={{ x: -280 }} transition={{ duration: 0.22 }} role="dialog" aria-modal="true" aria-label="Menu" className="fixed inset-y-0 left-0 z-50 w-[272px] overflow-y-auto border-r border-neutral-200 bg-paper lg:hidden">
           <button onClick={() => setOpen(false)} aria-label="Close menu" className="absolute right-3 top-3 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-neutral-300"><X size={16} /></button>
           {sidebar}
         </motion.div>
+        </>
       )}</AnimatePresence>
       <div className="min-w-0 flex-1">
         <header className="sticky top-0 z-30 border-b border-neutral-200 bg-paper/90 backdrop-blur">

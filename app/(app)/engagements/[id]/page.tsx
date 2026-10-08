@@ -156,7 +156,7 @@ function DemoDetail({ eng }: { eng: (typeof DEMO_ENGAGEMENTS)[number] }) {
       <AnimatePresence>
         {selected && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-4 md:items-center" onClick={() => setSelected(null)}>
-            <motion.div role="dialog" aria-modal="true" aria-label="Event detail" initial={{ y: 60, scale: 0.98 }} animate={{ y: 0, scale: 1 }} exit={{ y: 60, opacity: 0 }} transition={{ type: "spring", damping: 26 }} onClick={(e) => e.stopPropagation()} className="card-brutal w-full max-w-lg rounded-3xl bg-white p-6">
+            <motion.div role="dialog" aria-modal="true" aria-label="Event detail" initial={{ y: 60, scale: 0.98 }} animate={{ y: 0, scale: 1 }} exit={{ y: 60, opacity: 0 }} transition={{ type: "spring", damping: 26 }} onClick={(e) => e.stopPropagation()} className="card-brutal max-h-[90dvh] w-full max-w-lg overflow-y-auto rounded-3xl bg-white p-6">
               {(() => { const d = DEMO_DOCS.find((x) => x.id === selected)!; const vers = Array.from({ length: d.version }, (_, k) => d.version - k); return (
                 <div><p className="mono-meta text-neutral-500">{d.code} · EVENT DETAILS</p>
                 <p className="mt-1 text-xl font-black">{d.title}</p>

@@ -57,7 +57,7 @@ function DemoOverview() {
 
       <div className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_1fr]">
         <div>
-          <div className="flex items-center justify-between"><h2 className="font-display text-2xl font-black">Needs your attention</h2><Link href="/requests" className="text-sm font-black underline">View all</Link></div>
+          <div className="flex items-center justify-between"><h2 className="font-display text-2xl font-black">Needs your attention</h2><Link href="/requests" className="inline-flex min-h-[44px] items-center text-sm font-black underline">View all</Link></div>
           <div className="mt-3 space-y-3">
             {DEMO_ATTENTION.map((a,i)=>(
               <Reveal key={a.id} delay={i*0.05}>
@@ -73,7 +73,7 @@ function DemoOverview() {
           </div>
         </div>
         <div>
-          <div className="flex items-center justify-between"><h2 className="font-display text-2xl font-black">Recent activity</h2><Link href="/activity" className="text-sm font-black underline">Audit trail</Link></div>
+          <div className="flex items-center justify-between"><h2 className="font-display text-2xl font-black">Recent activity</h2><Link href="/activity" className="inline-flex min-h-[44px] items-center text-sm font-black underline">Audit trail</Link></div>
           <div className="card-brutal mt-3 rounded-3xl bg-white p-5">
             {DEMO_ACTIVITY.slice(0,5).map((e)=>(
               <div key={e.id} className="flex gap-3 border-b border-dashed border-neutral-200 py-3 last:border-0">
@@ -81,7 +81,7 @@ function DemoOverview() {
                 <div><p className="mono-meta text-neutral-400">{e.ago} · {e.time}</p><p className="text-sm"><b>{e.actor}</b> <span className="mono-meta rounded bg-neutral-100 px-1 font-bold">{e.action}</span><br/>{e.target}</p></div>
               </div>
             ))}
-            <Link href="/activity" className="mt-2 inline-flex items-center gap-1 text-sm font-black">Full trail <ArrowRight size={14}/></Link>
+            <Link href="/activity" className="mt-2 inline-flex min-h-[44px] items-center gap-1 py-2 text-sm font-black">Full trail <ArrowRight size={14}/></Link>
           </div>
           <div className="card-brutal mt-4 rounded-3xl bg-emerald-50 p-5">
             <p className="mono-meta">UP NEXT</p>
@@ -162,7 +162,7 @@ export default async function Overview() {
 
       <div className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_1fr]">
         <div>
-          <div className="flex items-center justify-between"><h2 className="font-display text-2xl font-black">Needs your attention</h2><Link href="/requests" className="text-sm font-black underline">View all</Link></div>
+          <div className="flex items-center justify-between"><h2 className="font-display text-2xl font-black">Needs your attention</h2><Link href="/requests" className="inline-flex min-h-[44px] items-center text-sm font-black underline">View all</Link></div>
           <div className="mt-3 space-y-3">
             {overdue.length === 0 ? (
               <div className="card-brutal-sm rounded-2xl bg-white p-4 text-sm text-neutral-600">All clear — nothing overdue right now.</div>
@@ -180,7 +180,7 @@ export default async function Overview() {
           </div>
         </div>
         <div>
-          <div className="flex items-center justify-between"><h2 className="font-display text-2xl font-black">Recent activity</h2><Link href="/activity" className="text-sm font-black underline">Audit trail</Link></div>
+          <div className="flex items-center justify-between"><h2 className="font-display text-2xl font-black">Recent activity</h2><Link href="/activity" className="inline-flex min-h-[44px] items-center text-sm font-black underline">Audit trail</Link></div>
           <div className="card-brutal mt-3 rounded-3xl bg-white p-5">
             {trail.length === 0 ? (
               <p className="text-sm text-neutral-600">Your history starts here — every action in this workspace is recorded.</p>
@@ -190,7 +190,7 @@ export default async function Overview() {
                 <div><p className="mono-meta text-neutral-400">{e.ago} · {e.time}</p><p className="text-sm"><b>{e.actor}</b> <span className="mono-meta rounded bg-neutral-100 px-1 font-bold">{e.action}</span><br/>{e.target}</p></div>
               </div>
             ))}
-            <Link href="/activity" className="mt-2 inline-flex items-center gap-1 text-sm font-black">Full trail <ArrowRight size={14}/></Link>
+            <Link href="/activity" className="mt-2 inline-flex min-h-[44px] items-center gap-1 py-2 text-sm font-black">Full trail <ArrowRight size={14}/></Link>
           </div>
         </div>
       </div>

@@ -28,7 +28,7 @@ export default function Login() {
   }
 
   return (
-    <div className="grid min-h-screen md:grid-cols-2">
+    <div className="grid min-h-dvh md:grid-cols-2">
       <div className="flex flex-col justify-center px-8 py-12 md:px-16 bg-ink text-white">
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
           <p className="font-display text-xl font-black">AUDRA</p>
@@ -50,7 +50,7 @@ export default function Login() {
             <input id="login-password" type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" className="mt-1 w-full rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm outline-none" />
             {error && <p role="alert" className="mt-3 rounded-xl bg-red-50 px-3 py-2 text-sm font-medium text-red-700">{error}</p>}
             <button type="submit" disabled={busy} className="card-brutal-sm mt-6 block min-h-[44px] w-full rounded-2xl bg-emerald-600 py-3 text-center font-black text-white disabled:opacity-60">{busy ? "Signing in…" : "Continue →"}</button>
-            <div className="mt-3 flex items-center justify-between text-xs font-bold"><button type="button" className="underline-offset-2 hover:underline">Forgot password?</button><Link href="/signup" className="font-bold text-emerald-700 underline">Create workspace</Link></div>
+            <div className="mt-3 flex items-center justify-between text-xs font-bold"><button type="button" className="inline-flex min-h-[44px] items-center underline-offset-2 hover:underline">Forgot password?</button><Link href="/signup" className="font-bold text-emerald-700 underline">Create workspace</Link></div>
           </form>
           <p className="mt-4 text-center text-sm text-neutral-500">Just looking around? <Link href="/overview" className="font-semibold text-ink underline underline-offset-4">Explore a sample workspace</Link></p>
           <p className="mono-meta mt-2 text-center text-neutral-400">PRIVATE BY DEFAULT · NOTHING PUBLIC</p>

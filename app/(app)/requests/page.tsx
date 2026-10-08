@@ -125,7 +125,7 @@ function RequestsInner() {
       <AnimatePresence>
         {showNew && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-4 md:items-center" onClick={() => setShowNew(false)}>
-            <motion.div role="dialog" aria-modal="true" aria-label="New request" initial={{ y: 60 }} animate={{ y: 0 }} exit={{ y: 60 }} transition={{ type: "spring", damping: 26 }} onClick={(e) => e.stopPropagation()} className="card-brutal w-full max-w-lg rounded-3xl bg-white p-6">
+            <motion.div role="dialog" aria-modal="true" aria-label="New request" initial={{ y: 60 }} animate={{ y: 0 }} exit={{ y: 60 }} transition={{ type: "spring", damping: 26 }} onClick={(e) => e.stopPropagation()} className="card-brutal max-h-[90dvh] w-full max-w-lg overflow-y-auto rounded-3xl bg-white p-6">
               <p className="text-xl font-black">New request</p>
               <form onSubmit={onCreate} className="mt-4 space-y-3">
                 {!view.isDemo && (

@@ -17,7 +17,7 @@ export default function Landing() {
     el?.scrollBy({ left: dir * 340, behavior: "smooth" });
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-dvh">
       {/* Floating pill nav */}
       <div className="sticky top-3 z-50 mx-auto max-w-[860px] px-4">
         <div className="pill-nav flex items-center justify-between gap-2 rounded-full py-2 pl-5 pr-2">
@@ -35,7 +35,7 @@ export default function Landing() {
             </Link>
             <Link
               href="/signup"
-              className="rounded-full bg-emerald-600 px-5 py-2.5 text-[13px] font-bold text-white transition hover:-translate-y-[1px]"
+              className="inline-flex min-h-[44px] items-center rounded-full bg-emerald-600 px-5 py-2.5 text-[13px] font-bold text-white transition hover:-translate-y-[1px]"
               style={{ boxShadow: "0 0 0 2px #C8F04A, 0 8px 20px rgba(11,122,75,.35)" }}
             >
               Create workspace
@@ -154,7 +154,7 @@ export default function Landing() {
         <div className="card-brutal mt-10 rounded-[28px] bg-ink p-6 text-white md:p-10">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="mono-meta text-white/60">ENGAGEMENT TIMELINE</p>
-            <Link href="/engagements/eng-2026" className="inline-flex items-center gap-1 text-[13px] font-bold text-emerald-300">
+            <Link href="/engagements/eng-2026" className="inline-flex min-h-[44px] items-center gap-1 py-2 text-[13px] font-bold text-emerald-300">
               Open live <ArrowUpRight size={14} />
             </Link>
           </div>

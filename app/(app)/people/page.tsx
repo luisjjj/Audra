@@ -37,7 +37,7 @@ function Block({ title, list }: { title: string; list: any[] }) {
       {list.map((p: any, i: number) => (
         <Reveal key={p.id} delay={i * 0.04}><div className="card-brutal-sm flex items-center justify-between gap-3 rounded-2xl bg-white p-4">
           <div className="flex min-w-0 items-center gap-3"><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-100 font-black text-emerald-800">{p.name[0]}</span><div className="min-w-0"><p className="truncate text-sm font-black">{p.name}</p><p className="truncate text-xs text-neutral-500">{p.role.charAt(0).toUpperCase() + p.role.slice(1)} · {p.org}</p><p className="mono-meta truncate text-neutral-400">{p.email}</p></div></div>
-          <button className="shrink-0 rounded-lg px-3 py-2 text-xs font-black underline">Manage</button>
+          <button className="inline-flex min-h-[44px] shrink-0 items-center rounded-lg px-3 py-2 text-xs font-black underline">Manage</button>
         </div></Reveal>
       ))}</div></div>
   );

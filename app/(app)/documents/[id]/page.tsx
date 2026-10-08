@@ -74,10 +74,10 @@ export default async function DocDetail({ params }: { params: { id: string } }) 
               <p className="mono-meta">VERSION {d.version} · ALL CHANGES KEPT</p>
             </div>
             <div className="mt-4 grid grid-cols-2 gap-2 text-sm font-black">
-              <button className="rounded-xl border border-neutral-200 bg-white py-2 inline-flex items-center justify-center gap-1"><Download size={14} /> Download</button>
-              <button className="rounded-xl border border-neutral-200 bg-white py-2">Replace</button>
-              <button className="rounded-xl border border-neutral-200 bg-white py-2">Review</button>
-              <button className="rounded-xl border border-neutral-200 bg-white py-2 inline-flex items-center justify-center gap-1"><Share2 size={14} /> Share</button>
+              <button className="inline-flex min-h-[44px] items-center justify-center gap-1 rounded-xl border border-neutral-200 bg-white py-2"><Download size={14} /> Download</button>
+              <button className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-neutral-200 bg-white py-2">Replace</button>
+              <button className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-neutral-200 bg-white py-2">Review</button>
+              <button className="inline-flex min-h-[44px] items-center justify-center gap-1 rounded-xl border border-neutral-200 bg-white py-2"><Share2 size={14} /> Share</button>
             </div>
           </div>
           <div className="card-brutal rounded-3xl bg-ink p-5 text-white">

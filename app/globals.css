@@ -6,6 +6,11 @@
 :focus-visible { outline: 2px solid #0A6B42; outline-offset: 2px; }
 html, body { background: #F4F3EF; color: #0B0B0B; }
 body { overflow-x: clip; }
+
+/* Prevent iOS Safari auto-zoom on form focus (<16px inputs trigger it) */
+@media (max-width: 767px) {
+  input, select, textarea { font-size: 16px; }
+}
 ::selection { background: #0B7A4B; color: white; }
 
 /* Calm weight scale — same typefaces, less heaviness.
