@@ -12,7 +12,7 @@ export default async function People() {
 
   return (
     <PageWrap>
-      <div className="flex flex-wrap items-end justify-between gap-3"><div><p className="mono-meta text-neutral-500">COLLABORATE · PEOPLE</p><h1 className="font-display text-4xl font-black md:text-5xl">People</h1></div><button className="card-brutal-sm min-h-[44px] rounded-2xl bg-ink px-5 py-2.5 text-sm font-black text-white">Invite →</button></div>
+      <div className="flex flex-wrap items-end justify-between gap-3"><div><p className="mono-meta text-neutral-500">PEOPLE</p><h1 className="font-display text-4xl font-black md:text-5xl">People</h1></div><button className="card-brutal-sm min-h-[44px] rounded-2xl bg-ink px-5 py-2.5 text-sm font-black text-white">Invite →</button></div>
       {people.length === 0 ? (
         <div className="mt-6">
           <EmptyState
@@ -24,7 +24,7 @@ export default async function People() {
         <>
           <Block title={`INTERNAL · ${internal.length}`} list={internal} />
           {external.length > 0 && <Block title={`EXTERNAL · ${external.length} MEMBER${external.length === 1 ? "" : "S"}`} list={external} />}
-          <div className="card-brutal mt-6 rounded-3xl bg-emerald-50 p-5 text-sm"><p className="font-black">Scoped external access</p><p className="text-neutral-600">External members see only engagements they are invited to — never Internal Finance or company-wide documents. Enforced server-side.</p></div>
+          <div className="card-brutal mt-6 rounded-3xl bg-emerald-50 p-5 text-sm"><p className="font-black">Scoped external access</p><p className="text-neutral-600">External members only see the engagements you share with them — never the rest of your workspace.</p></div>
         </>
       )}
     </PageWrap>

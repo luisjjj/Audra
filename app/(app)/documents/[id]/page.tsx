@@ -50,7 +50,7 @@ export default async function DocDetail({ params }: { params: { id: string } }) 
         <div className="card-brutal rounded-3xl bg-white p-6">
           <div className="rounded-2xl border border-dashed border-neutral-300 bg-paper p-10 text-center">
             <p className="font-display text-4xl font-black text-neutral-300">PDF</p>
-            <p className="mono-meta mt-2">SECURE PREVIEW · SIGNED URL · NO PUBLIC LINKS</p>
+            <p className="mono-meta mt-2">PRIVATE PREVIEW</p>
             <p className="mt-2 text-sm font-bold">{d.title} · {d.size}</p>
           </div>
           <div className="mt-4 rounded-2xl bg-neutral-50 border p-4 text-sm">
@@ -71,7 +71,7 @@ export default async function DocDetail({ params }: { params: { id: string } }) 
             <div className="mt-2 space-y-1.5 text-sm">
               <p><b>Uploaded by</b> {d.by}</p><p><b>Uploaded</b> {d.date}</p>
               <p><b>Version</b> {d.version}</p><p><b>Status</b> {d.approved ? "Approved ✓" : d.reviewed ? "Under review" : "Not reviewed"}</p>
-              <p className="mono-meta">SHA 9f2c…a1 · PREV 41bd…07 · CHAINED</p>
+              <p className="mono-meta">VERSION {d.version} · ALL CHANGES KEPT</p>
             </div>
             <div className="mt-4 grid grid-cols-2 gap-2 text-sm font-black">
               <button className="rounded-xl border border-neutral-200 bg-white py-2 inline-flex items-center justify-center gap-1"><Download size={14} /> Download</button>
@@ -90,7 +90,7 @@ export default async function DocDetail({ params }: { params: { id: string } }) 
                 </div>
               ))}
             </div>
-            <p className="mono-meta mt-3 text-white/50">NEVER SILENTLY OVERWRITTEN.</p>
+            <p className="mono-meta mt-3 text-white/50">PREVIOUS VERSIONS ARE ALWAYS KEPT.</p>
           </div>
         </div>
       </div>

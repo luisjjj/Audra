@@ -45,7 +45,7 @@ export default function Documents() {
   return (
     <PageWrap>
       <div className="flex flex-wrap items-end justify-between gap-3">
-        <div><p className="mono-meta text-neutral-500">WORK · EVIDENCE LIBRARY</p><h1 className="font-display text-4xl font-black md:text-5xl">Documents</h1></div>
+        <div><p className="mono-meta text-neutral-500">DOCUMENTS</p><h1 className="font-display text-4xl font-black md:text-5xl">Documents</h1></div>
         {view.isDemo && (
           <button onClick={fakeUpload} className="card-brutal-sm inline-flex min-h-[44px] items-center gap-2 rounded-2xl bg-ink px-5 py-2.5 text-sm font-black text-white"><Upload size={16} /> Upload</button>
         )}
@@ -54,7 +54,7 @@ export default function Documents() {
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="card-brutal-sm mt-4 rounded-2xl bg-white p-4">
           <p className="text-sm font-black">Uploading Q3_Bank_Statement.pdf… {progress}%</p>
           <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-neutral-200"><motion.div animate={{ width: `${progress}%` }} className="h-full bg-emerald-600" /></div>
-          <p className="mono-meta mt-1 text-neutral-500">{progress < 100 ? "UPLOADING → PROCESSING → EXTRACT/REVIEW" : "COMPLETED ✓ · v3 CREATED · TRAIL LOGGED"}</p>
+          <p className="mono-meta mt-1 text-neutral-500">{progress < 100 ? "UPLOADING YOUR DOCUMENT…" : "UPLOAD COMPLETE ✓"}</p>
         </motion.div>
       )}
       <input value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search documents" role="searchbox" placeholder="Search documents..." className="mt-4 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-2.5 text-sm outline-none" />
@@ -63,7 +63,7 @@ export default function Documents() {
         <div className="mt-4">
           <EmptyState
             title={view.items.length === 0 && !view.isDemo ? "No evidence yet" : "Your evidence library is empty."}
-            body={view.items.length === 0 && !view.isDemo ? "Documents requested against your engagements will land here, versioned and trailed." : "Upload the first document for this engagement."}
+            body={view.items.length === 0 && !view.isDemo ? "Documents requested against your engagements will land here, each version kept." : "Upload the first document for this engagement."}
           />
         </div>
       ) : (

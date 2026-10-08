@@ -65,7 +65,7 @@ export default function Landing() {
             </Link>
           </div>
           <p className="mt-4 text-sm text-neutral-500">
-            or <Link href="/overview" className="font-semibold text-ink underline underline-offset-4">explore the live demo</Link> · <Link href="/engagements/eng-2026" className="font-semibold text-ink underline underline-offset-4">see the audit timeline</Link>
+            or <Link href="/overview" className="font-semibold text-ink underline underline-offset-4">explore a sample workspace</Link> · <Link href="/engagements/eng-2026" className="font-semibold text-ink underline underline-offset-4">see the audit timeline</Link>
           </p>
           <p className="mono-meta mt-4 text-neutral-500">
             Request → Submit → Review → Approve → Record → Audit Trail
@@ -74,7 +74,7 @@ export default function Landing() {
 
         {/* Product mock with stickers */}
         <motion.div {...rise(0.1)} className="relative mx-auto mt-10 max-w-[560px]">
-          <span className="sticker absolute -left-2 -top-4 z-10 -rotate-12 bg-lime text-ink">HASH-CHAINED ✓</span>
+          <span className="sticker absolute -left-2 -top-4 z-10 -rotate-12 bg-lime text-ink">APPROVED ✓</span>
           <span className="sticker absolute -right-2 top-16 z-10 rotate-6 bg-white text-ink">78% COMPLETE</span>
           <div className="card-brutal floaty rounded-[28px] bg-ink p-4 text-white md:p-5">
             <div className="rounded-2xl bg-white p-4 text-ink md:p-5">
@@ -111,7 +111,7 @@ export default function Landing() {
           <div ref={howRef} className="snap-row no-scrollbar -mx-4 mt-6 flex gap-4 overflow-x-auto px-4 pb-2 md:mx-0 md:px-0">
             <HowCard sticker="STEP 01" stickerClass="bg-ink text-white -rotate-6" title="Request" body="Ask Finance for exactly what you need. Owner, due date, required docs — logged to the trail." footer="Scoped requests" caption="Assigned, due, traceable" dark={false} />
             <HowCard sticker="STEP 02" stickerClass="bg-lime text-ink rotate-3" title="Submit & review" body="Evidence lands versioned. Reviewers comment, request changes — never a silent overwrite." footer="v1 → v2 → approved" caption="Versions, comments, reviews" dark={false} solid />
-            <HowCard sticker="STEP 03" stickerClass="bg-white text-ink -rotate-3" title="Approve & trail" body="Approvals draw the trail shut. Who did what, when, what changed — hash-chained." footer="Nothing lost" caption="Approvals + append-only log" dark />
+            <HowCard sticker="STEP 03" stickerClass="bg-white text-ink -rotate-3" title="Approve & trail" body="Approvals close the loop. Who did what, when, and what changed — all recorded." footer="Nothing lost" caption="Approvals + full history" dark />
           </div>
           <CarouselDots onPrev={() => scrollBy(howRef.current, -1)} onNext={() => scrollBy(howRef.current, 1)} />
         </div>
@@ -142,7 +142,7 @@ export default function Landing() {
               <div className="card-brutal rounded-[24px] bg-white p-6 transition hover:-translate-y-1">
                 <ShieldCheck size={40} strokeWidth={1.25} />
                 <p className="mt-16 text-xl font-extrabold leading-tight">Is it safe? Let&apos;s talk trail.</p>
-                <p className="mt-2 text-[13px] text-neutral-500">Append-only events with hash chaining. Permission changes logged.</p>
+                <p className="mt-2 text-[13px] text-neutral-500">A complete, uneditable record. Every view, change and approval is logged.</p>
               </div>
               <p className="mt-3 text-[15px] font-extrabold">Can we prove it?</p>
             </div>
@@ -153,7 +153,7 @@ export default function Landing() {
         {/* Timeline teaser */}
         <div className="card-brutal mt-10 rounded-[28px] bg-ink p-6 text-white md:p-10">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <p className="mono-meta text-white/60">WOW MOMENT — ENGAGEMENT TIMELINE</p>
+            <p className="mono-meta text-white/60">ENGAGEMENT TIMELINE</p>
             <Link href="/engagements/eng-2026" className="inline-flex items-center gap-1 text-[13px] font-bold text-emerald-300">
               Open live <ArrowUpRight size={14} />
             </Link>
@@ -177,7 +177,7 @@ export default function Landing() {
               </motion.div>
             ))}
           </div>
-          <p className="mono-meta text-white/50">CLICK ANY EVENT → OPENS THE EXACT OBJECT.</p>
+          <p className="mono-meta text-white/50">SELECT ANY EVENT TO SEE THE FULL STORY.</p>
         </div>
 
         <p className="mx-auto mt-10 max-w-[700px] text-center text-[15px] font-bold">

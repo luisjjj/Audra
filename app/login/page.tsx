@@ -35,7 +35,7 @@ export default function Login() {
           <h1 className="font-display mt-6 text-5xl font-black leading-[0.95] md:text-6xl">WELCOME<br />BACK.</h1>
           <p className="mt-4 text-white/70">Your audit workspace<br />is waiting.</p>
           <div className="mono-meta mt-8 space-y-1 text-white/50">
-            <p>AUDIT_ID: ENG-2026 · 78% COMPLETE</p><p>EVENTS: HASH-CHAINED</p><p>ORGS: APEX + MERIDIAN</p>
+            <p>REQUESTS · EVIDENCE · APPROVALS · HISTORY</p>
           </div>
         </motion.div>
       </div>
@@ -52,8 +52,8 @@ export default function Login() {
             <button type="submit" disabled={busy} className="card-brutal-sm mt-6 block min-h-[44px] w-full rounded-2xl bg-emerald-600 py-3 text-center font-black text-white disabled:opacity-60">{busy ? "Signing in…" : "Continue →"}</button>
             <div className="mt-3 flex items-center justify-between text-xs font-bold"><button type="button" className="underline-offset-2 hover:underline">Forgot password?</button><Link href="/signup" className="font-bold text-emerald-700 underline">Create workspace</Link></div>
           </form>
-          <p className="mt-4 text-center text-sm text-neutral-500">Just exploring? <Link href="/overview" className="font-semibold text-ink underline underline-offset-4">Open the demo</Link></p>
-          <p className="mono-meta mt-2 text-center text-neutral-500">SERVER-AUTH · ORG-ISOLATED · SIGNED URLS</p>
+          <p className="mt-4 text-center text-sm text-neutral-500">Just looking around? <Link href="/overview" className="font-semibold text-ink underline underline-offset-4">Explore a sample workspace</Link></p>
+          <p className="mono-meta mt-2 text-center text-neutral-400">PRIVATE BY DEFAULT · NOTHING PUBLIC</p>
         </motion.div>
       </div>
     </div>

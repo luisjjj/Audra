@@ -15,7 +15,7 @@ export default async function Engagements() {
   return (
     <PageWrap>
       <div className="flex flex-wrap items-end justify-between gap-3">
-        <div><p className="mono-meta text-neutral-500">WORK · ENGAGEMENTS</p><h1 className="font-display text-4xl font-black md:text-5xl">Engagements</h1></div>
+        <div><p className="mono-meta text-neutral-500">ENGAGEMENTS</p><h1 className="font-display text-4xl font-black md:text-5xl">Engagements</h1></div>
         {real
           ? <NewEngagementButton />
           : <Link href="/settings" className="card-brutal-sm inline-flex min-h-[44px] items-center rounded-2xl bg-ink px-5 py-2.5 text-sm font-black text-white">+ New engagement</Link>}

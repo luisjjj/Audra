@@ -8,9 +8,9 @@ export default async function Filings() {
   const items = ctx.isDemo || !ctx.activeOrgId ? DEMO_FILINGS : await getOrgFilings(ctx.activeOrgId);
   return (
     <PageWrap>
-      <p className="mono-meta text-neutral-500">WORK · FILING TRACKING (NOT E-FILING)</p>
+      <p className="mono-meta text-neutral-500">FILINGS</p>
       <h1 className="font-display text-4xl font-black md:text-5xl">Filings</h1>
-      <p className="text-sm text-neutral-500">Tracking workspace only — MVP does not file with any government authority.</p>
+      <p className="text-sm text-neutral-500">Track every filing — owner, deadline and supporting evidence in one place.</p>
       {items.length === 0 ? (
         <div className="mt-6">
           <EmptyState

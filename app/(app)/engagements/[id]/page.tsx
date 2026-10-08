@@ -67,7 +67,7 @@ function DemoDetail({ eng }: { eng: (typeof DEMO_ENGAGEMENTS)[number] }) {
 
   return (
     <PageWrap>
-      <p className="mono-meta text-neutral-500">ENGAGEMENT · {eng.id.toUpperCase()} · HASH-CHAINED</p>
+      <p className="mono-meta text-neutral-500">ENGAGEMENT</p>
       <div className="mt-1 flex flex-wrap items-start justify-between gap-3">
         <div><h1 className="font-display text-4xl font-black md:text-5xl">{eng.title}</h1><p className="text-sm text-neutral-500">{eng.org} · {eng.period}</p><p className="mt-1 max-w-xl text-sm text-neutral-600">{eng.desc}</p></div>
         <div className="flex gap-2"><Link href="/people" className="card-brutal-sm inline-flex min-h-[44px] items-center rounded-2xl bg-white px-4 py-2 text-sm font-black">Invite</Link><Link href="/settings" className="card-brutal-sm inline-flex min-h-[44px] items-center rounded-2xl bg-ink px-4 py-2 text-sm font-black text-white">Settings</Link></div>
@@ -98,12 +98,12 @@ function DemoDetail({ eng }: { eng: (typeof DEMO_ENGAGEMENTS)[number] }) {
 
           {/* WOW: Audit Timeline */}
           <div className="card-brutal rounded-3xl bg-white p-6 md:p-8 lg:col-span-3">
-            <div className="flex items-center justify-between"><p className="font-display text-2xl font-black">Audit Timeline — today</p><span className="mono-meta rounded-full bg-black/5 px-2 py-0.5 text-neutral-500">CLICK ANY EVENT →</span></div>
+            <div className="flex items-center justify-between"><p className="font-display text-2xl font-black">Timeline</p><span className="mono-meta rounded-full bg-black/5 px-2 py-0.5 text-neutral-500">SELECT AN EVENT</span></div>
             <div className="mt-6">
               {[
                 { t: "09:12", title: "Sarah uploaded evidence", sub: "Supplier Invoices — Q3 Pack · DOC-91A0", doc: "doc-2" },
                 { t: "10:04", title: "Michael reviewed", sub: "Q2 Bank Statement.pdf · viewed + annotated", doc: "doc-1" },
-                { t: "10:32", title: "Changes requested", sub: "Missing page 4 · reason logged to trail", doc: "doc-1" },
+                { t: "10:32", title: "Changes requested", sub: "Missing page 4 · reason recorded", doc: "doc-1" },
                 { t: "11:17", title: "Sarah uploaded v2", sub: "Bank Statement — September 2026 · v2 · hash 9f2c…a1", doc: "doc-1" },
                 { t: "11:43", title: "Michael approved", sub: "Version 2 · prev → new recorded", doc: "doc-1" },
                 { t: "12:01", title: "Engagement progress 74% → 78%", sub: "REQ-025 completed · auto-recalculated", doc: null },
@@ -120,7 +120,7 @@ function DemoDetail({ eng }: { eng: (typeof DEMO_ENGAGEMENTS)[number] }) {
                 </motion.button>
               ))}
             </div>
-            <p className="mono-meta mt-2 text-neutral-500">NOTHING IMPORTANT HAPPENS WITHOUT LEAVING A TRAIL.</p>
+            <p className="mono-meta mt-2 text-neutral-500">EVERY EVENT IS RECORDED.</p>
           </div>
         </div>
       )}
@@ -158,11 +158,11 @@ function DemoDetail({ eng }: { eng: (typeof DEMO_ENGAGEMENTS)[number] }) {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-4 md:items-center" onClick={() => setSelected(null)}>
             <motion.div role="dialog" aria-modal="true" aria-label="Event detail" initial={{ y: 60, scale: 0.98 }} animate={{ y: 0, scale: 1 }} exit={{ y: 60, opacity: 0 }} transition={{ type: "spring", damping: 26 }} onClick={(e) => e.stopPropagation()} className="card-brutal w-full max-w-lg rounded-3xl bg-white p-6">
               {(() => { const d = DEMO_DOCS.find((x) => x.id === selected)!; const vers = Array.from({ length: d.version }, (_, k) => d.version - k); return (
-                <div><p className="mono-meta text-neutral-500">{d.code} · CLICK-THROUGH FROM TIMELINE</p>
+                <div><p className="mono-meta text-neutral-500">{d.code} · EVENT DETAILS</p>
                 <p className="mt-1 text-xl font-black">{d.title}</p>
                 <p className="text-sm text-neutral-600">Uploaded by {d.by} · Version {d.version} · {d.size}</p>
                 <div className="mt-3 rounded-2xl border border-neutral-200 bg-paper p-3 text-sm"><p className="font-black">Version history</p>{vers.map((v) => (<p key={v} className="mono-meta">v{v} · {d.by} · {v === d.version ? `${d.date} ✓ current` : "earlier version"}</p>))}</div>
-                <div className={`mt-3 rounded-2xl border p-3 text-sm ${d.approved ? "border-emerald-600 bg-emerald-50" : d.reviewed ? "border-amber-400 bg-amber-50" : "bg-neutral-100 border-neutral-200"}`}><p className={`font-black ${d.approved ? "text-emerald-800" : d.reviewed ? "text-amber-800" : "text-neutral-600"}`}>{d.approved ? "Approved ✓" : d.reviewed ? "Under review" : "Awaiting review"}</p><p className="text-xs text-neutral-600">{d.code} · {d.category} · full history in trail</p></div>
+                <div className={`mt-3 rounded-2xl border p-3 text-sm ${d.approved ? "border-emerald-600 bg-emerald-50" : d.reviewed ? "border-amber-400 bg-amber-50" : "bg-neutral-100 border-neutral-200"}`}><p className={`font-black ${d.approved ? "text-emerald-800" : d.reviewed ? "text-amber-800" : "text-neutral-600"}`}>{d.approved ? "Approved ✓" : d.reviewed ? "Under review" : "Awaiting review"}</p><p className="text-xs text-neutral-600">{d.code} · {d.category} · full history included</p></div>
                 <div className="mt-4 flex gap-2"><Link href={`/documents/${d.id}`} className="min-h-[44px] flex-1 items-center justify-center rounded-2xl bg-ink py-2.5 text-center text-sm font-black text-white inline-flex">Open document →</Link><button onClick={() => setSelected(null)} className="rounded-2xl border border-neutral-200 px-4 text-sm font-bold">Close</button></div></div> ); })()}
             </motion.div>
           </motion.div>
@@ -181,7 +181,7 @@ function RealDetail({ view }: { view: Extract<View, { isDemo: false }> & { eng: 
 
   return (
     <PageWrap>
-      <p className="mono-meta text-neutral-500">ENGAGEMENT · {eng.id.toUpperCase().slice(0, 18)} · HASH-CHAINED</p>
+      <p className="mono-meta text-neutral-500">ENGAGEMENT</p>
       <div className="mt-1 flex flex-wrap items-start justify-between gap-3">
         <div><h1 className="font-display text-4xl font-black md:text-5xl">{eng.title}</h1><p className="text-sm text-neutral-500">{eng.org} · {eng.period}</p>{eng.desc && <p className="mt-1 max-w-xl text-sm text-neutral-600">{eng.desc}</p>}</div>
         <div className="flex gap-2"><Link href="/people" className="card-brutal-sm inline-flex min-h-[44px] items-center rounded-2xl bg-white px-4 py-2 text-sm font-black">Invite</Link><Link href="/settings" className="card-brutal-sm inline-flex min-h-[44px] items-center rounded-2xl bg-ink px-4 py-2 text-sm font-black text-white">Settings</Link></div>
@@ -278,7 +278,7 @@ function RealDetail({ view }: { view: Extract<View, { isDemo: false }> & { eng: 
       )}
       {tab === "Activity" && (
         <div className="mt-6 space-y-2">
-          {view.trail.length === 0 && <div className="card-brutal-sm rounded-2xl bg-white p-4 text-sm text-neutral-600">No events yet — actions here are recorded hash-chained.</div>}
+          {view.trail.length === 0 && <div className="card-brutal-sm rounded-2xl bg-white p-4 text-sm text-neutral-600">No events yet — everything here is recorded.</div>}
           {view.trail.map((e) => (
             <div key={e.id} className="card-brutal-sm rounded-2xl bg-white p-3 text-sm"><b>{e.actor}</b> <span className="mono-meta rounded bg-neutral-100 px-1">{e.action}</span> {e.target}<span className="mono-meta ml-2 text-neutral-400">{e.time}</span></div>
           ))}

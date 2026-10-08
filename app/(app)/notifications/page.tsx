@@ -9,7 +9,7 @@ export default async function Notifications() {
     : await getUserNotifications(ctx.user.id);
   return (
     <PageWrap>
-      <p className="mono-meta text-neutral-500">SYSTEM · NOTIFICATION CENTER</p>
+      <p className="mono-meta text-neutral-500">NOTIFICATIONS</p>
       <h1 className="font-display text-4xl font-black">Notifications</h1>
       {items.length === 0 ? (
         <div className="mt-4">

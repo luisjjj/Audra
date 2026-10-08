@@ -90,7 +90,7 @@ function RequestsInner() {
   return (
     <PageWrap>
       <div className="flex flex-wrap items-end justify-between gap-3">
-        <div><p className="mono-meta text-neutral-500">WORK · REQUESTS</p><h1 className="font-display text-4xl font-black md:text-5xl">Requests</h1></div>
+        <div><p className="mono-meta text-neutral-500">REQUESTS</p><h1 className="font-display text-4xl font-black md:text-5xl">Requests</h1></div>
         <button onClick={() => setShowNew(true)} className="card-brutal-sm inline-flex min-h-[44px] items-center rounded-2xl bg-emerald-600 px-5 py-2.5 text-sm font-black text-white">+ New request</button>
       </div>
       <div className="mt-4 flex gap-2 overflow-x-auto pb-1" role="tablist" aria-label="Filter requests">
@@ -153,7 +153,7 @@ function RequestsInner() {
                   </div>
                 </div>
                 {error && <p role="alert" className="rounded-xl bg-red-50 px-3 py-2 text-sm font-medium text-red-700">{error}</p>}
-                <button type="submit" disabled={busy} className="min-h-[44px] w-full rounded-2xl bg-emerald-600 py-3 font-black text-white disabled:opacity-60">{busy ? "Creating…" : "Create request → trail logged"}</button>
+                <button type="submit" disabled={busy} className="min-h-[44px] w-full rounded-2xl bg-emerald-600 py-3 font-black text-white disabled:opacity-60">{busy ? "Creating…" : "Create request"}</button>
               </form>
             </motion.div>
           </motion.div>

@@ -58,7 +58,7 @@ export default function Signup() {
         </div>
         {error && <p role="alert" className="rounded-xl bg-red-50 px-3 py-2 text-sm font-medium text-red-700">{error}</p>}
         <button type="submit" disabled={busy} className="card-brutal-sm block min-h-[44px] w-full rounded-2xl bg-emerald-600 py-3 text-center font-black text-white disabled:opacity-60">{busy ? "Setting up…" : "Create workspace →"}</button>
-        <Link href="/overview" className="block text-center text-sm font-bold text-neutral-500">Just exploring? Open the demo</Link>
+        <Link href="/overview" className="block text-center text-sm font-bold text-neutral-500">Just looking around? Explore a sample workspace</Link>
       </form>
       <p className="mt-6 text-center text-sm text-neutral-500">Already have an account? <Link href="/login" className="font-semibold text-ink underline underline-offset-4">Log in</Link></p>
     </div>

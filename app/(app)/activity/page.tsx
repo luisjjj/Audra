@@ -35,14 +35,14 @@ export default function Activity() {
 
   return (
     <PageWrap>
-      <p className="mono-meta text-neutral-500">SYSTEM · APPEND-ONLY · HASH-CHAINED</p>
-      <h1 className="font-display text-4xl font-black md:text-6xl">AUDIT TRAIL.</h1>
-      <p className="text-sm text-neutral-500">Internal integrity mechanism — tamper-evident, not legal immutability. Normal users cannot edit or delete events.</p>
+      <p className="mono-meta text-neutral-500">ACTIVITY</p>
+      <h1 className="font-display text-4xl font-black md:text-6xl">Activity</h1>
+      <p className="text-sm text-neutral-500">A complete record of everything happening across your workspace. Nothing can be edited or deleted.</p>
       <div className="mt-4 flex gap-2 overflow-x-auto pb-1">{FILTERS.map((x) => (<button key={x} aria-pressed={filter === x} onClick={() => setFilter(x)} className={`inline-flex min-h-[44px] items-center whitespace-nowrap rounded-full border px-4 py-2 text-xs font-bold ${filter === x ? "bg-ink text-white border-ink" : "bg-white border-neutral-200 text-neutral-600"}`}>{x}</button>))}</div>
       {list.length === 0 ? (
         <div className="card-brutal mt-6 rounded-3xl bg-white p-10 text-center">
-          <p className="text-xl font-black">{view.isDemo ? "Nothing under this filter." : "Your trail starts here."}</p>
-          <p className="mt-1 text-sm text-neutral-500">{view.isDemo ? "Try a different filter." : "Every action in this workspace will be recorded, hash-chained."}</p>
+          <p className="text-xl font-black">{view.isDemo ? "Nothing under this filter." : "Your history starts here."}</p>
+          <p className="mt-1 text-sm text-neutral-500">{view.isDemo ? "Try a different filter." : "Every action in this workspace is recorded and kept."}</p>
         </div>
       ) : (
         <div className="mt-6">

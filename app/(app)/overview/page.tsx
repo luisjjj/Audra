@@ -22,7 +22,7 @@ function DemoOverview() {
   const eng = DEMO_ENGAGEMENTS[0];
   return (
     <PageWrap>
-      <p className="mono-meta text-neutral-500">TUE 05 OCT 2026 · OVERVIEW</p>
+      <p className="mono-meta text-neutral-500">OVERVIEW</p>
       <h1 className="font-display mt-1 text-4xl font-black md:text-5xl">Good morning, Henkyaa.</h1>
       <p className="mt-1 text-neutral-600">Here&apos;s what needs your attention.</p>
 
@@ -141,9 +141,9 @@ export default async function Overview() {
       ) : (
         <Reveal>
           <div className="card-brutal mt-6 rounded-3xl bg-white p-8 text-center md:p-12">
-            <p className="mono-meta text-neutral-500">FRESH WORKSPACE</p>
+            <p className="mono-meta text-neutral-500">GETTING STARTED</p>
             <p className="font-display mt-2 text-3xl font-black md:text-4xl">Welcome to {orgName}.</p>
-            <p className="mx-auto mt-2 max-w-md text-sm text-neutral-600">Create your first audit engagement to start requesting evidence, collaborating and building your trail.</p>
+            <p className="mx-auto mt-2 max-w-md text-sm text-neutral-600">Create your first audit engagement to start requesting evidence and collaborating with your team.</p>
             <div className="mt-5 flex justify-center"><NewEngagementButton /></div>
           </div>
         </Reveal>
@@ -183,7 +183,7 @@ export default async function Overview() {
           <div className="flex items-center justify-between"><h2 className="font-display text-2xl font-black">Recent activity</h2><Link href="/activity" className="text-sm font-black underline">Audit trail</Link></div>
           <div className="card-brutal mt-3 rounded-3xl bg-white p-5">
             {trail.length === 0 ? (
-              <p className="text-sm text-neutral-600">Your trail starts here — every action in this workspace will be recorded.</p>
+              <p className="text-sm text-neutral-600">Your history starts here — every action in this workspace is recorded.</p>
             ) : trail.map((e)=>(
               <div key={e.id} className="flex gap-3 border-b border-dashed border-neutral-200 py-3 last:border-0">
                 <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-600" />

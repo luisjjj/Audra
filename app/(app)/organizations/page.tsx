@@ -25,7 +25,7 @@ export default function Orgs() {
 
   return (
     <PageWrap>
-      <p className="mono-meta text-neutral-500">COLLABORATE · CROSS-COMPANY</p>
+      <p className="mono-meta text-neutral-500">ORGANIZATIONS</p>
       <h1 className="font-display text-4xl font-black md:text-5xl">Organizations</h1>
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
         <div className="card-brutal rounded-3xl bg-white p-6">
@@ -43,8 +43,8 @@ export default function Orgs() {
             <div className="grid grid-cols-2 gap-2 text-[13px] font-bold">
               {["Requests ☑","Evidence ☑","Comments ☑","Activity ☑","Internal Finance ☐","Company Documents ☐"].map((s)=>(<label key={s} className="rounded-xl bg-white/10 px-3 py-2">{s}</label>))}
             </div>
-            <button onClick={() => setSent(true)} className="min-h-[44px] w-full rounded-2xl bg-emerald-500 py-2.5 font-black text-ink">{sent ? "Invitation sent ✓ · trail logged" : "Send invitation →"}</button>
-            <p className="mono-meta text-white/50">EXTERNAL ORG GETS ENGAGEMENT ACCESS ONLY.</p>
+            <button onClick={() => setSent(true)} className="min-h-[44px] w-full rounded-2xl bg-emerald-500 py-2.5 font-black text-ink">{sent ? "Invitation sent ✓" : "Send invitation →"}</button>
+            <p className="mono-meta text-white/50">THEY ONLY SEE THIS ENGAGEMENT — NOTHING ELSE.</p>
           </div>
         </div>
       </div>
