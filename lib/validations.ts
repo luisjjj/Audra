@@ -47,6 +47,12 @@ export const workspaceSchema = z.object({
   size: z.string().max(50).optional(),
 });
 
+export const workspaceUpdateSchema = z.object({
+  name: z.string().min(2).max(200),
+  industry: z.string().max(100).optional(),
+  timezone: z.string().max(50).optional(),
+});
+
 export const signupSchema = z.object({
   name: z.string().min(2).max(100),
   email: z.string().email().max(200),

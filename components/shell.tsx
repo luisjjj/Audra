@@ -37,6 +37,7 @@ export function Shell({ children, userName = "Henkyaa Japheth", userRole = "Admi
   const [wsOpen, setWsOpen] = useState(false);
   const [switching, setSwitching] = useState(false);
   const activeName = activeOrgName ?? orgs.find((o) => o.id === activeOrgId)?.name ?? orgs[0]?.name ?? "Workspace";
+  const roleLabel = userRole.charAt(0).toUpperCase() + userRole.slice(1);
 
   async function chooseOrg(id: string) {
     if (id === activeOrgId || switching) { setWsOpen(false); return; }
@@ -101,7 +102,7 @@ export function Shell({ children, userName = "Henkyaa Japheth", userRole = "Admi
       <div className="p-4">
         <div className="card-brutal-sm rounded-xl bg-white p-3">
           <p className="text-sm font-semibold">{userName}</p>
-          <p className="mono-meta mt-0.5 truncate text-neutral-500">{userRole} · {activeName}</p>
+          <p className="mono-meta mt-0.5 truncate text-neutral-500">{roleLabel} · {activeName}</p>
         </div>
       </div>
     </div>

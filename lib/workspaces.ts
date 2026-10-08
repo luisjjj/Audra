@@ -197,7 +197,7 @@ async function userNames(ids: string[]): Promise<Record<string, string>> {
 }
 
 export type RealEngagement = {
-  id: string; title: string; org: string; firm: string; progress: number;
+  id: string; code: string; title: string; org: string; firm: string; progress: number;
   done: number; total: number; due: string; status: string; period: string; desc: string;
 };
 
@@ -224,7 +224,7 @@ export async function getOrgEngagements(orgId: string, orgName: string): Promise
     const c = byEng[e.id] ?? { done: 0, total: 0 };
     const period = e.startDate || e.dueDate ? `${fmtDate(e.startDate)} — ${fmtDate(e.dueDate)}` : "Ongoing";
     return {
-      id: e.id, title: e.title, org: orgName, firm: "Internal",
+      id: e.id, code: e.code ?? e.id.toUpperCase(), title: e.title, org: orgName, firm: "Internal",
       progress: e.progress ?? 0, done: c.done, total: c.total,
       due: fmtDate(e.dueDate), status: e.status ?? "active", period, desc: e.description ?? "",
     };
@@ -422,6 +422,45 @@ export async function getOrgMembers(orgId: string, orgName: string): Promise<Rea
 
 export type RealNotification = { id: string; title: string; body: string; time: string; read: boolean };
 
+export type WorkspaceSettings = {
+  id: string;
+  name: string;
+  industry: string;
+  size: string;
+  timezone: string;
+  memberCount: number;
+  eventCount: number;
+};
+
+export async function getWorkspaceSettings(orgId: string): Promise<WorkspaceSettings | null> {
+  const { db } = await import("@/lib/db");
+  const schema = await import("@/drizzle/schema");
+  const { eq, count } = await import("drizzle-orm");
+  const orgs: any[] = await (db as any)
+    .select()
+    .from(schema.organizations)
+    .where(eq(schema.organizations.id, orgId))
+    .limit(1);
+  if (orgs.length === 0) return null;
+  const o = orgs[0];
+  const [m] = (await (db as any)
+    .select({ n: count() })
+    .from(schema.organizationMembers)
+    .where(eq(schema.organizationMembers.organizationId, orgId))) as { n: number }[];
+  const [e] = (await (db as any)
+    .select({ n: count() })
+    .from(schema.auditEvents)
+    .where(eq(schema.auditEvents.organizationId, orgId))) as { n: number }[];
+  return {
+    id: o.id,
+    name: o.name,
+    industry: o.industry ?? "",
+    size: o.size ?? "",
+    timezone: o.timezone ?? "UTC",
+    memberCount: m?.n ?? 0,
+    eventCount: e?.n ?? 0,
+  };
+}
 export async function getUserNotifications(userId: string): Promise<RealNotification[]> {
   const { db } = await import("@/lib/db");
   const schema = await import("@/drizzle/schema");

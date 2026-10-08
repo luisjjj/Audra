@@ -225,6 +225,32 @@ export async function createWorkspace(form: unknown) {
   return { ok: true as const, orgId: org.id as string };
 }
 
+// Update the active workspace profile. Owners and admins only.
+export async function updateWorkspace(form: unknown) {
+  const { workspaceUpdateSchema } = await import("@/lib/validations");
+  const raw = form instanceof FormData ? Object.fromEntries(form.entries()) : form;
+  const data = workspaceUpdateSchema.parse(raw);
+  const { isDbConfigured, db } = await import("@/lib/db");
+  if (!isDbConfigured) throw new Error("Workspace settings need a database connection");
+  const ctx = await getActiveOrgContext();
+  if (ctx.isDemo || !ctx.activeOrgId) throw new Error("Sign in to a workspace to update settings");
+  assertCan(ctx.role, "manage");
+  const schema = await import("@/drizzle/schema");
+  const { eq } = await import("drizzle-orm");
+  await (db as any)
+    .update(schema.organizations)
+    .set({
+      name: data.name.trim(),
+      industry: data.industry?.trim() ? data.industry.trim() : null,
+      timezone: data.timezone?.trim() ? data.timezone.trim() : "UTC",
+      updatedAt: new Date(),
+    })
+    .where(eq(schema.organizations.id, ctx.activeOrgId));
+  const { revalidatePath } = await import("next/cache");
+  revalidatePath("/settings");
+  revalidatePath("/");
+}
+
 // Switch the active workspace. Membership is verified server-side.
 export async function switchWorkspace(orgId: string) {
   const { isDbConfigured, db } = await import("@/lib/db");

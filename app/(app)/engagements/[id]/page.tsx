@@ -67,7 +67,7 @@ function DemoDetail({ eng }: { eng: (typeof DEMO_ENGAGEMENTS)[number] }) {
 
   return (
     <PageWrap>
-      <p className="mono-meta text-neutral-500">ENGAGEMENT</p>
+      <p className="mono-meta text-neutral-500">ENGAGEMENT · {eng.id.toUpperCase()}</p>
       <div className="mt-1 flex flex-wrap items-start justify-between gap-3">
         <div><h1 className="font-display text-4xl font-black md:text-5xl">{eng.title}</h1><p className="text-sm text-neutral-500">{eng.org} · {eng.period}</p><p className="mt-1 max-w-xl text-sm text-neutral-600">{eng.desc}</p></div>
         <div className="flex gap-2"><Link href="/people" className="card-brutal-sm inline-flex min-h-[44px] items-center rounded-2xl bg-white px-4 py-2 text-sm font-black">Invite</Link><Link href="/settings" className="card-brutal-sm inline-flex min-h-[44px] items-center rounded-2xl bg-ink px-4 py-2 text-sm font-black text-white">Settings</Link></div>
@@ -181,7 +181,7 @@ function RealDetail({ view }: { view: Extract<View, { isDemo: false }> & { eng: 
 
   return (
     <PageWrap>
-      <p className="mono-meta text-neutral-500">ENGAGEMENT</p>
+      <p className="mono-meta text-neutral-500">ENGAGEMENT · {eng.code}</p>
       <div className="mt-1 flex flex-wrap items-start justify-between gap-3">
         <div><h1 className="font-display text-4xl font-black md:text-5xl">{eng.title}</h1><p className="text-sm text-neutral-500">{eng.org} · {eng.period}</p>{eng.desc && <p className="mt-1 max-w-xl text-sm text-neutral-600">{eng.desc}</p>}</div>
         <div className="flex gap-2"><Link href="/people" className="card-brutal-sm inline-flex min-h-[44px] items-center rounded-2xl bg-white px-4 py-2 text-sm font-black">Invite</Link><Link href="/settings" className="card-brutal-sm inline-flex min-h-[44px] items-center rounded-2xl bg-ink px-4 py-2 text-sm font-black text-white">Settings</Link></div>
