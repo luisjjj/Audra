@@ -8,7 +8,7 @@ export function ProgressRing({ value }: { value: number }) {
         <circle cx={70} cy={70} r={R} stroke="rgba(255,255,255,.15)" strokeWidth={12} fill="none" />
         <motion.circle cx={70} cy={70} r={R} stroke="#34D399" strokeWidth={12} fill="none" strokeLinecap="round"
           strokeDasharray={C} initial={{ strokeDashoffset: C }} animate={{ strokeDashoffset: C - (C * value) / 100 }} transition={{ duration: 1.2, ease: "easeOut" }} transform="rotate(-90 70 70)" />
-        <text x={70} y={76} textAnchor="middle" fill="white" fontWeight={900} fontSize={24}>{value}%</text>
+        <text x={70} y={76} textAnchor="middle" fill="white" fontWeight={600} fontSize={24}>{value}%</text>
       </svg>
     </div>
   );

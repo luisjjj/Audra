@@ -8,8 +8,14 @@ html, body { background: #F4F3EF; color: #0B0B0B; }
 body { overflow-x: clip; }
 ::selection { background: #0B7A4B; color: white; }
 
-/* Editorial + condensed display. Anton for oversized statements, Inter elsewhere. */
-.font-display { letter-spacing: -0.03em; line-height: 1.02; }
+/* Calm weight scale — same typefaces, less heaviness.
+   Black/extrabold step down to semibold, bold steps down to medium,
+   Anton display stays at its designed 400 (no faux-bold). */
+.font-black { font-weight: 600; }
+.font-extrabold { font-weight: 600; }
+.font-bold { font-weight: 500; }
+b, strong { font-weight: 600; }
+.font-display { letter-spacing: -0.03em; line-height: 1.02; font-weight: 400; }
 .font-ugly { font-family: Anton, Inter, system-ui, sans-serif; text-transform: uppercase; letter-spacing: -0.01em; line-height: 0.88; }
 
 /* Sticker surfaces: soft, borderless-feeling, deep soft shadow. No hard offsets. */
